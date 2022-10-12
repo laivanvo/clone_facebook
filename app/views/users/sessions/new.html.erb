@@ -1,0 +1,32 @@
+<section class="auth_area">
+  dasdadas<%= Figaro.env.pusher_app_id %>
+ <div class="box">
+   <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'form_wrap'}) do |f|%>
+  <h2 class="_title">Login</h2>
+  <div class="field_wrap">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+  <div class="field_wrap">
+    <%= f.label :password %><br />
+    <%= f.password_field :password, autocomplete: "current-password" %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="event_wrap">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+  <% end %>
+
+  <div class="button_wrap">
+    <%= f.submit "Log in" %>
+  </div>
+
+<% end %>
+<%= button_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, method: :post %>
+<%= button_to "Sign in with Google", '/users/auth/google_oauth2', method: :post %>
+ <div class="link_wrap">
+ <%= render "users/shared/links" %></div>
+ </div>
+</section>

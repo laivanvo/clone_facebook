@@ -1,62 +1,24 @@
-## Ruby on Rails 7 docker template with mysql
+# README
 
-1. First clone the project
-```
-$ git clone https://github.com/Mashpy/rails-7-docker-template-with-mysql.git
-```
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-2. Rename the project name as your wish
-```
-$ mv rails-7-docker-template-with-mysql your_project_name
-```
+Things you may want to cover:
 
-3. Change directory -
-```
-$ cd your_project_name
-```
+* Ruby version
 
-4. Update your rails version on the Gemfile -
-```
-source 'https://rubygems.org'
-gem 'rails', '7.0.3'
-```
+* System dependencies
 
-5. Update Ruby version on Dockerfile -
-```
-FROM  ruby:3.1.2-slim
-```
+* Configuration
 
-6. Now install new rails app -
-```
-$ docker-compose run app rails new . --force --database=mysql --skip-bundle
-```
-7. Build the docker image -
-```
-$ docker-compose build
-```
-8. Update database details on config/database.yml file.
-```
-default: &default
-  adapter: mysql2
-  encoding: utf8
-  pool: 5
-  username: root
-  password: "root"
-  host: mysql
+* Database creation
 
-development:
-  <<: *default
-  database: dev
+* Database initialization
 
-test:
-  <<: *default
-  database: dev
-```
+* How to run the test suite
 
-9. Run - 
-```
-$ docker-compose up
-```
+* Services (job queues, cache servers, search engines, etc.)
 
-10. Browse http://localhost:3000
-![Ruby on rails 7.0.3 docker with mysql](https://i.ibb.co/Z19FNSJ/Screenshot-2022-07-30-at-9-11-24-PM.png) 
+* Deployment instructions
+
+* ...

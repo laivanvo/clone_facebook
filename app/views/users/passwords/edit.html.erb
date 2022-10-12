@@ -1,0 +1,27 @@
+<div class="auth_area">
+  <div class="box">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: 'form_wrap' , method: :put }) do |f| %>
+    <h2 class="_title">Change your password</h2>
+    <%= render "users/shared/error_messages", resource: resource %>
+    <%= f.hidden_field :reset_password_token %>
+
+    <div class="field_wrap">
+      <%= f.label :password, "New password" %><br />
+      <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+      <% end %>
+      <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+    </div>
+
+    <div class="field_wrap">
+      <%= f.label :password_confirmation, "Confirm new password" %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+
+    <div class="button_wrap">
+      <%= f.submit "Change my password" %>
+    </div>
+  <% end %>
+  <div class="link_wrap"><%= render "users/shared/links" %></div>
+  </div>
+</div>
