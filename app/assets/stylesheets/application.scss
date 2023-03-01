@@ -300,6 +300,7 @@ body {
           justify-content: end;
           align-items: center;
           padding-top: 10px;
+          background-color: #fff !important;
           button {
             cursor: pointer;
             border-radius: 6px;
@@ -343,6 +344,38 @@ body {
               }
             }
           }
+        }
+        textarea {
+          width: 100%;
+          height: 160px;
+          border: none;
+          outline: none;
+          margin-top: 10px;
+        }
+        .upload {
+          border: 1px;
+          border-style: groove;
+          height: 50px;
+          margin-bottom: 10px;
+          display: flex;
+          align-items: center;
+          padding-left: 10px;
+          img {
+            margin-left: 30px;
+            cursor: pointer;
+          }
+          input {
+            display: none;
+          }
+        }
+        .button_wrap {
+          background-color: #1B74E4;
+          color: #000;
+          width: 100%;
+          height: 50px;
+          font-size: 30px;
+          border-radius: 6px;
+          cursor: pointer;
         }
       }
       .post_item {
@@ -409,7 +442,7 @@ body {
           padding-left: 0;
           img {
             width: 100%;
-            height: 100%;
+            max-height: 500px;
           }
         }
         .view {
@@ -577,6 +610,11 @@ body {
         align-items: center;
         margin-top: 0;
         margin-bottom: 5px;
+      }
+      #myBtn1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
   }

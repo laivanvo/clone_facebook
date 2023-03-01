@@ -4,14 +4,14 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  root :to => 'home#index'
+  root to: 'home#index'
 
-  devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   devise_for :admins
 
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
 
-  post '/posts' => 'posts#store'
+  post '/posts' => 'posts#create'
 end
