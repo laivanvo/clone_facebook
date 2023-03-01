@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_28_065857) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_02_094803) do
   create_table "admins", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -23,27 +23,33 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_28_065857) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "identities", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "provider"
-    t.string "uid"
+  create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "post_id"
+    t.integer "comment_id"
+    t.string "text"
+    t.string "file"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_identities_on_user_id"
   end
 
   create_table "posts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-<<<<<<< HEAD
-    t.integer "user_id"
-    t.string "title"
-=======
     t.integer "user_id", null: false
-    t.integer "mode", default: 0, null: false
+    t.integer "mode", null: false
     t.string "text"
->>>>>>> add_screen_home
-    t.json "content"
+    t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "relations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "receiver_id"
+    t.string "arr"
+    t.integer "relation_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["arr"], name: "index_relations_on_arr", unique: true
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -57,9 +63,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_28_065857) do
     t.string "provider"
     t.string "uid"
     t.integer "role"
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "identities", "users"
 end

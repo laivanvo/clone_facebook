@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
-  before_action :authenticate_user!
   def index
-    gon.mode = 'Tùy chỉnh'
+    @post = Post.new
+    @friends = current_user.friends
+    @posts = current_user.home_posts
   end
 end

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Workspace</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <%= render "layouts/header" %>
+    <div class="content_area">
+      <div class="left left_relation">
+        <%= render "layouts/relations/left" %>
+      </div>
+      <div class="main main_relation">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

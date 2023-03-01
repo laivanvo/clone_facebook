@@ -10,6 +10,12 @@ $('.search').keyup(function(e){
 $('.sign').click(function () {
   document.getElementById("signDropdown").classList.toggle("show");
 });
+$('.res_fr_drop').click(function () {
+  document.getElementById("resFriendDropdown").classList.toggle("show");
+});
+$('.friend_drop').click(function () {
+  document.getElementById("friendDropdown").classList.toggle("show");
+});
 
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(event) {
@@ -31,15 +37,18 @@ $('#myBtn').click(function () {
 $('#myBtn1').click(function () {
   $('#myModal1').css("display", "block");
 })
-$('#close').onclick = function() {
+$('#close').click(function() {
   $('#myModal').css("display", "none");
-}
-$('#close1').onclick = function() {
+})
+$('#close1').click(function() {
   $('#myModal1').css("display", "none");
-}
-$('#mode_seleted').onclick = function() {
+})
+$('#cancel').click(function() {
   $('#myModal1').css("display", "none");
-}
+})
+$('#mode_seleted').click(function() {
+  $('#myModal1').css("display", "none");
+})
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
@@ -51,4 +60,18 @@ window.onclick = function(event) {
   }
 }
 
-console.log(gon.mode)
+$("[name='post[mode]']").click(function (e) {
+  $('#_mode').html([
+    { id: "global", name: "Công khai" },
+    { id: "only_friend", name: "Bạn bè" },
+    { id: "only_me", name: "Chỉ mình tôi" },
+  ].find((mode) => mode.id === e.target.value).name)
+})
+
+$('#friend_url').click(function() {
+  window.location.href = "/friends"
+})
+
+// $('#friend_url').click(function(accept) {
+//   $('#friend_url').html = "friends"
+// })
