@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Workspace</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <%= Gon::Base.render_data %>
+  </head>
+
+  <body>
+    <%= render "layouts/header" %>
+    <div class="content_area">
+      <div class="left">
+        <%= render "layouts/left" %>
+      </div>
+      <div class="main">
+        <%= yield %>
+      </div>
+      <div class="right">
+        <%= render "layouts/right" %>
+      </div>
+    </div>
+  </body>
+</html>
