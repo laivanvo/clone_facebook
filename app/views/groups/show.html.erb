@@ -1,0 +1,17 @@
+<div class='show'>
+  <div class='avatar'>
+   <%= image_tag(@group.avatar_url ? @group.avatar_url : 'cover_image.jpg') %>
+  </div>
+  <div class='name_wrap'>
+    <div class='name'></div>
+    <% if !@relation %>
+      <%= button_to 'Tham gia nhóm', relation_members_path, params: { relation: { group_id: @group.id } } %>
+      <%= render "groups/show/not_joined/content" %>
+    <% elsif @relation.relation_type === 'requested' %>
+      <%= button_to 'Hủy yêu cầu', relation_member_path(@relation.id), method: :delete %>
+      <%= render "groups/show/not_joined/content" %>
+    <% else %>
+      <%= render partial: "groups/show/joined/content", locals: { post: @post, group: @group, passed_posts: @passed_posts }%>
+    <% end %>
+  </div>
+</div>

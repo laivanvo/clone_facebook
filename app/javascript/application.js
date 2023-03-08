@@ -31,32 +31,40 @@ window.onclick = function(event) {
   }
 }
 
-$('#myBtn').click(function () {
-  $('#myModal').css("display", "block");
+$('#open_create_post_modal').click(function () {
+  $('#create_post_modal').css("display", "block");
 })
-$('#myBtn1').click(function () {
-  $('#myModal1').css("display", "block");
+$('#open_set_mode_post_modal').click(function () {
+  $('#set_mode_post_modal').css("display", "block");
 })
-$('#close').click(function() {
-  $('#myModal').css("display", "none");
+$('#open_create_group_modal').click(function () {
+  $('#create_group_modal').css("display", "block");
 })
-$('#close1').click(function() {
-  $('#myModal1').css("display", "none");
+$('#close_create_post_modal').click(function() {
+  $('#create_post_modal').css("display", "none");
 })
+$('#close_set_mode_modal').click(function() {
+  $('#set_mode_post_modal').css("display", "none");
+})
+$('#close_create_group_modal').click(function() {
+  $('#create_group_modal').css("display", "none");
+})
+
+
 $('#cancel').click(function() {
-  $('#myModal1').css("display", "none");
+  $('#set_mode_post_modal').css("display", "none");
 })
 $('#mode_seleted').click(function() {
-  $('#myModal1').css("display", "none");
+  $('#set_mode_post_modal').css("display", "none");
 })
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-  if (event.target == $('#myModal')[0]) {
-    $('#myModal').css("display", "none");
+  if (event.target == $('#create_post_modal')[0]) {
+    $('#create_post_modal').css("display", "none");
   }
-  if (event.target == $('#myModal1')[0]) {
-    $('#myModal1').css("display", "none");
+  if (event.target == $('#set_mode_post_modal')[0]) {
+    $('#set_mode_post_modal').css("display", "none");
   }
 }
 

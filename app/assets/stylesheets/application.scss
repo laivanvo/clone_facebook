@@ -187,13 +187,11 @@ body {
         display: flex;
         align-items: center;
         height: 50px;
-        justify-content: space-between;
         padding-left: 10px;
         padding-right: 10px;
         .img_wrap {
           width: 40px;
           height: 40px;
-          border-radius: 50%;
           background-color: aliceblue;
           cursor: pointer;
           background-color: rgba(172, 191, 205, 0.706);
@@ -204,12 +202,36 @@ body {
             width: 30px;
             height: 30px;
           }
+          .name {
+            margin-left: 10px;
+          }
         }
         input {
           border-radius: 50px;
           width: 100%;
           height: 30px;
           padding-left: 10px;
+        }
+        .name {
+          padding-left: 10px;
+        }
+      }
+      .button_wrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+        button {
+          background-color: #fff;
+          width: 80%;
+          height: 50px;
+          border-radius: 6px;
+        }
+      }
+      .item {
+        margin-top: 10px;
+        .info {
+          opacity: 0.5;
         }
       }
     }
@@ -294,121 +316,6 @@ body {
               }
             }
           }
-        }
-      }
-      .modal_mode {
-        .radio_btn_wrap {
-          border-radius: 6px;
-          display: flex;
-          align-items: center;
-          cursor: pointer;
-          height: 50px;
-          display: flex;
-          align-items: center;
-          padding-left: 10px;
-          &:hover {
-            background-color: aliceblue;
-          }
-          img {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-          }
-          .item {
-            margin-left: 10px;
-            width: 80%;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            div {
-              width: 1000%;
-            }
-          }
-          input {
-            flex: 1;
-          }
-        }
-        .button_wrap {
-          display: flex;
-          justify-content: end;
-          align-items: center;
-          padding-top: 10px;
-          background-color: #fff !important;
-          button {
-            cursor: pointer;
-            border-radius: 6px;
-          }
-          .cancel {
-            margin-right: 10px;
-            width: 40px;
-            height: 30px;
-            background-color: #fff;
-            color: #1b74e4;
-            border: none;
-            &:hover {
-              background-color: aliceblue;
-            }
-          }
-          .mode_seleted {
-            margin-right: 10px;
-            width: 80px;
-            height: 30px;
-            background-color: #1b74e4;
-            color: #fff;
-          }
-        }
-      }
-      .modal_create_post {
-        .auth {
-          .user_name {
-            button {
-              width: 80px;
-              height: 40px;
-              cursor: pointer;
-              &::after {
-                content: "";
-                width: 30px;
-                height: 30px;
-                background-image: url("setting-svgrepo-com.svg");
-                top: 10px;
-                right: 5px;
-                position: absolute;
-                display: inline-block;
-              }
-            }
-          }
-        }
-        textarea {
-          width: 100%;
-          height: 160px;
-          border: none;
-          outline: none;
-          margin-top: 10px;
-        }
-        .upload {
-          border: 1px;
-          border-style: groove;
-          height: 50px;
-          margin-bottom: 10px;
-          display: flex;
-          align-items: center;
-          padding-left: 10px;
-          img {
-            margin-left: 30px;
-            cursor: pointer;
-          }
-          input {
-            display: none;
-          }
-        }
-        .button_wrap {
-          background-color: #1b74e4;
-          color: #000;
-          width: 100%;
-          height: 50px;
-          font-size: 30px;
-          border-radius: 6px;
-          cursor: pointer;
         }
       }
       .post_item {
@@ -650,6 +557,146 @@ body {
         }
       }
     }
+    .main_group {
+      padding-left: 10px;
+      padding-right: 10px;
+      .setting {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 10px;
+      }
+      .angle_left {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 300px;
+        border-radius: 50%;
+        background-color: #fff;
+        border-style: groove;
+      }
+      .angle_right {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 300px;
+        border-radius: 50%;
+        background-color: #fff;
+        border-style: groove;
+        right: 10px;
+      }
+      .items {
+        display: flex;
+        justify-content: space-between;
+        a {
+          width: 45%;
+          height: 400px;
+          margin-left: 30px;
+          .item {
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            cursor: pointer;
+            border-style: groove;
+            border-width: 1px;
+            img {
+              width: 100%;
+              height: 60%;
+              border-style: groove;
+              border-width: 1px;
+            }
+            h2 {
+              margin-left: 10px;
+              color: #000;
+            }
+            .members {
+              color: #000;
+              margin-left: 10px;
+              opacity: 0.5;
+            }
+            .button_wrap {
+              display: flex;
+              justify-content: center;
+              button {
+                height: 50px;
+                background-color: aliceblue;
+                margin-top: 10px;
+                font-size: large;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+      .show {
+        .avatar {
+          img {
+            width: 100%;
+            height: 400px;
+          }
+        }
+      }
+      .member {
+        .tool {
+          background-color: #fff;
+          padding-left: 10px;
+          padding-bottom: 10px;
+          .avatar_wrap {
+            img {
+              width: 100%;
+              height: 300px;
+            }
+          }
+          .search {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            input {
+              border-radius: 50px;
+              width: 90%;
+              height: 30px;
+              padding-left: 10px;
+            }
+          }
+        }
+        .items {
+          width: 100%;
+          min-height: 50vh;
+          .empty_box {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .content {
+              .img_wrap {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                img {
+                  width: 100px;
+                  height: 100px;
+                }
+              }
+            }
+          }
+          .item {
+            width: 100%;
+            height: 40px;
+            margin-top: 10px;
+            padding-left: 20px;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .button_wrap {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+          }
+        }
+      }
+    }
     .right {
       position: fixed;
       margin-left: 75%;
@@ -781,16 +828,15 @@ body {
   border: 1px solid #888;
   width: 50%;
   border-radius: 6px;
-  .modal_title {
+  .title {
     height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-size: larger;
+    text-align: center;
   }
   .auth {
     display: flex;
     align-items: center;
-    .user_avatar {
+    .avatar {
       width: 10%;
       img {
         width: 40px;
@@ -800,17 +846,65 @@ body {
     }
     .user_name {
       width: 70%;
+      padding-left: 10px;
       .item {
-        display: flex;
-        align-items: center;
-        margin-top: 0;
-        margin-bottom: 5px;
+        font-size: medium;
       }
-      #myBtn1 {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    }
+  }
+  form {
+    label {
+      width: 100%;
+      height: 30px;
+      padding-left: 10px;
+      font-size: medium;
+    }
+    .upload {
+      border: 1px;
+      border-style: groove;
+      height: 50px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      img {
+        margin-left: 30px;
+        cursor: pointer;
       }
+      input {
+        display: none;
+      }
+    }
+    textarea {
+      width: 100%;
+      height: 160px;
+      border: none;
+      outline: none;
+      margin-top: 10px;
+    }
+    input {
+      width: 100%;
+      height: 60px;
+      margin-top: 10px;
+      padding-left: 10px;
+    }
+    .button_wrap {
+      background-color: #1b74e4;
+      color: #000;
+      width: 100%;
+      height: 50px;
+      font-size: 30px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    select {
+      width: 100%;
+      height: 50px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      cursor: pointer;
+      background-color: #fff;
+      padding-left: 10px;
     }
   }
 }

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :posts
   resources :relations
+  resources :member_relations
+  resources :groups
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -20,4 +22,6 @@ Rails.application.routes.draw do
 
   get '/profiles' => 'profiles#index'
   get '/profiles/:id', to: 'profiles#show', as: 'profile'
+
+  get '/groups/:id/members' => 'groups#members'
 end

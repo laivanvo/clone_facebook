@@ -1,0 +1,30 @@
+<div class="setting">
+  <h1>Nhóm</h1>
+</div>
+<div class="setting">
+  <input placeholder="Tìm kiếm nhóm" />
+</div>
+<%= render partial: "groups/create", locals: { group: @group } %>
+<div class="line"></div>
+<div class="setting">
+  <h3>Nhóm do bạn quản lý</h3>
+</div>
+<% current_user.groups.each do |group| %>
+  <%= link_to group_path(group.id) do %>
+    <div class="item">
+      <%= image_tag(group.avatar_url ? group.avatar_url : 'cover_image.jpg') %>
+      <div><%= group.name %></div>
+    </div>
+  <% end %>
+<% end %>
+<div class="setting">
+  <h3>Nhóm bạn đã tham gia</h3>
+</div>
+<% current_user.joined_groups.each do |group| %>
+  <%= link_to group_path(group.id) do %>
+    <div class="item">
+      <%= image_tag(group.avatar_url ? group.avatar_url : 'cover_image.jpg') %>
+      <div><%= group.name %></div>
+    </div>
+  <% end %>
+<% end %>

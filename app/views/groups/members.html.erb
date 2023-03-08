@@ -1,0 +1,38 @@
+<div class="member">
+  <div class="tool">
+    <div class="avatar_wrap">
+      <%= image_tag(@group.avatar_url || 'cover_image.jpg') %>
+    </div>
+    <h1>Yêu cầu làm thành viên</h1>
+    <div class="search">
+      <input placeholder="Tìm kiếm theo tên" />
+    </div>
+  </div>
+  <div class="items">
+    <% if @requests.count === 0 %>
+      <div class="empty_box">
+        <div class="content">
+          <div class="img_wrap">
+            <%= image_tag('null_states_people_gray_wash.svg') %>
+          </div>
+          <div><h2>Không có thành viên đang chờ nào.</h2></div>
+        </div>
+      </div>
+    <% else %>
+      <% @requests.each do |request| %>
+        <div class="item">
+          <div class="info">
+            <%= request.user.name %>
+          </div>
+          <div class="button_wrap">
+            <div class="accept">
+              <%= button_to "Chấp nhận", member_relation_path(request.id), params: { relation: { user_id: request.id, relation_type: 'joined' } }, method: :patch %>
+            </div>
+            <div class="delete">
+              <%= button_to "Xóa yêu cầu", member_relation_path(request.id), method: :delete %></div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
