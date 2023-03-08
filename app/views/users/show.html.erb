@@ -1,0 +1,78 @@
+<div class="user">
+  <div class='avatar_user'>
+    <%= image_tag('avatar_profile.jpg') %>
+  </div>
+  <div class='cover_image'>
+    <%= image_tag('cover_image.jpg') %>
+  </div>
+  <div class='info'>
+    <div class="item">
+      <div class='avatar_box'></div>
+      <div class='auth'>
+        <h2><%= profile_name(@user.profile) %></h2>
+        <% unless @is_mine %>
+          <div class='count_friend'><%= @user.friends.count %> bạn bè • <%= current_user.common_friends(@user.id).count %> bạn chung</div>
+        <% end %>
+      </div>
+    </div>
+    <% unless @is_mine %>
+      <div class='button_wrap'>
+        <% if !@relation %>
+          <%= button_to 'Thêm bạn bè', relations_path, params: { relation: { receiver_id: @user.id } } %>
+        <% elsif @relation.friend? %>
+          <button class='show_remove_relation'>Bạn bè</button>
+          <div id='remove_relation' class='drop_down'>
+            <%= button_to 'Hủy kết bạn', relation_path(@relation.id), method: :delete %>
+          </div>
+        <% elsif @relation.sender_id == current_user.id %>
+          <%= button_to 'Hủy lời mời', relation_path(@relation.id), method: :delete %>
+        <% else %>
+          <button class='show_response_relation'>Phản hồi</button>
+          <div id='response_relation' class='drop_down'>
+            <%= button_to 'Chấp nhận kết bạn', relation_path(@relation.id), params: { relation: { relation_type: 'friend' } }, method: :patch %>
+            <%= button_to 'Xóa lời mời kết bạn', relation_path(@relation.id), method: :delete %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class='line'></div>
+  <div class="items">
+    <div class="user_info">
+      <h2>Giới thiệu</h2>
+      <div class='line'></div>
+      <% if @is_mine %>
+        <div class="_item btn" id="open_profile_modal">
+          <h2>Thêm tiểu sử</h2>
+        </div>
+      <% end %>
+      <div class="_item">
+        <%= image_tag('home-filled-svgrepo-com.svg') %>
+        <div><%= profile_address(@user.profile) %></div>
+      </div>
+      <div class="_item">
+        <%= image_tag('avatar-svgrepo-com.svg') %>
+        <div><%= profile_birthday(@user.profile) %></div>
+      </div>
+      <div class="line"></div>
+      <div class="_item" class="friend_url">
+        <%= image_tag('friend-3-svgrepo-com.svg') %>
+        <div>Bạn bè</div>
+      </div>
+      <div class="box_user">
+        <%= render partial: "users/card", collection: @user.friends, as: :user %>
+      </div>
+    </div>
+    <div class="user_post">
+      <% if @is_mine %>
+        <%= render partial: "posts/create", locals: { group_id: nil } %>
+      <% end %>
+      <div class='tool'>
+        <h2>Bài viết</h2>
+        <button><h2>Bộ lọc</h2></button>
+      </div>
+      <%= render partial: "posts/card", collection: @user.posts, as: :post %>
+    </div>
+  </div>
+</div>
+<%= render partial: "modal/profile_form", locals: { profile: @user.profile } %>

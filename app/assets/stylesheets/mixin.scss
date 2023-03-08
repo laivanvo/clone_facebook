@@ -1,0 +1,58 @@
+@mixin item {
+  width: 100%;
+  min-height: 50px;
+  border-radius: 6px;
+  background-color: #fff;
+  padding: 10px;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(172, 191, 205, 0.706);
+  }
+  margin-top: 10px;
+  @include flex;
+}
+
+@mixin _item {
+  @include item;
+  &:hover {
+    background-color: #fff;
+  }
+  display: block;
+}
+
+@mixin flex_space_between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin img_icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+@mixin flex_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  div:nth-child(1) {
+    margin-left: 10px;
+  }
+}
+
+@mixin flex {
+  display: flex;
+  align-items: center;
+  div:nth-child(1) {
+    margin-right: 10px;
+  }
+}
+
+@mixin primary_button {
+  background-color:#90b3de;
+  color: #fff;
+  font-size: larger;
+  min-width: 150px;
+  min-height: 50px;
+}

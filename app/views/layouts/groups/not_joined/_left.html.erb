@@ -1,0 +1,16 @@
+<div class="setting">
+  <h1>Nhóm</h1>
+</div>
+<div class="setting">
+  <% form_tag  %>
+</div>
+<%= render partial: "groups/create", locals: { group: @group } %>
+<div class="line"></div>
+<div class="setting">
+  <h3>Nhóm do bạn quản lý</h3>
+</div>
+<%= render partial: "groups/item", collection: current_user.groups, as: :group %>
+<div class="setting">
+  <h3>Nhóm bạn đã tham gia</h3>
+</div>
+<%= render partial: "groups/item", collection: current_user.joined_groups, as: :group %>

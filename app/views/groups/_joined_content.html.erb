@@ -1,0 +1,27 @@
+<div class="name_wrap">
+  <div class="item">
+    <h1 class='name'><%= group.name %></h1>
+    <div class="user">Nhóm của <strong><%= group_user_name(group) %></strong></div>
+  </div>
+  <div class="item">
+    <%= button_to 'Đã tham gia', member_relation_path(relation.id), params: { relation: { group_id: group.id } } , method: :delete %>
+  </div>
+</div>
+<div class="line"></div>
+<div class="tool">
+  <button id="show_tool_post">Thảo luận</button>
+  <button id="show_tool_member">Thành viên</button>
+  <button id="show_tool_info">Thông tin</button>
+</div>
+
+<div class="tool_item">
+  <div id="tool_post">
+    <%= render partial: "groups/posts", locals: { group: group, relation: relation } %>
+  </div>
+  <div id="tool_info">
+    <%= render partial: "groups/info", locals: { group: group, relation: relation } %>
+  </div>
+  <div id="tool_member">
+    <%= render partial: "groups/members", locals: { group: group, relation: relation } %>
+  </div>
+</div>

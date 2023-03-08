@@ -1,0 +1,30 @@
+<div id="post_modal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="close_post_modal">&times;</span>
+    <div class="title">
+      <h4>Tạo bài viết</h4>
+    </div>
+    <div class="auth">
+      <div class="avatar">
+        <%= user_avatar(current_user) %>
+      </div>
+      <div class="name">
+        <div class="item">
+          <% profile_name(current_user.profile) %>
+        </div>
+      </div>
+    </div>
+    <%= form_with model: post do |form| %>
+      <%= form.label "Chọn chế độ của bài viết"%>
+      <%= form.select :mode, Post.modes.keys.to_a %>
+      <%= form.text_area(:text, placeholder: "#{profile_name(current_user.profile)} ơi, bạn đang nghĩ gì thế?" ) %>
+      <%= form.hidden_field :group_id, value: group_id %>
+      <div class="upload">
+        Thêm ảnh đại diện cho nhóm
+        <label for="post_content"><%= image_tag('img_icon.png') %></label>
+        <%= form.file_field :content, accept:'image/*' %>
+      </div>
+      <button class="button_wrap" type="submit">Đăng</button>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="setting">
+  <h1>Tất cả bạn bè</h1>
+</div>
+<div class="setting">
+  <input placeholder="Tìm kiếm Bạn bè" class="input_search" />
+</div>
+<div class="line"></div>
+<div class="setting">
+  <h3><%= current_user.friends.count %> người bạn</h3>
+</div>
+<%= render partial: "users/item", collection: current_user.friends, as: :user %>

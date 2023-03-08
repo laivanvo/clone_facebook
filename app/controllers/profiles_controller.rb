@@ -1,12 +1,20 @@
 class ProfilesController < ApplicationController
-  def index
+  def update
+    @profile = current_user.profile.find_by(id: params[:id])
+    if @profile.nil?
+      flash[:error] = 'bạn không có quyền thao tác'
+      return redirect_back(fallback_location: root_path)
+    end
+    if @profile.update
+      flash[:success] = 'cập nhật profile thành công'
+    else
+      flash[:error] = @post.errors.messages.first
+    end
+    redirect_back(fallback_location: root_path)
   end
 
-  def show
-    @user = User.find params[:id]
-    @friends = current_user.friends
-    @relation = current_user.relation params[:id]
-    @posts = @user.posts
-    @common_friends = current_user.common_friends params[:id]
+  private
+  def profile_params
+    params.require(:profile).permit(:name, :address, :birthday, :avatar)
   end
 end

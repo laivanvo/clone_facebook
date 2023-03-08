@@ -7,14 +7,17 @@ $('.search').keyup(function(e){
   }
 });
 
-$('.sign').click(function () {
-  document.getElementById("signDropdown").classList.toggle("show");
+$('.show_sign').click(function () {
+  document.getElementById("sign").classList.toggle("show");
 });
-$('.res_fr_drop').click(function () {
-  document.getElementById("resFriendDropdown").classList.toggle("show");
+$('.show_response_relation').click(function () {
+  document.getElementById("response_relation").classList.toggle("show");
 });
-$('.friend_drop').click(function () {
-  document.getElementById("friendDropdown").classList.toggle("show");
+$('.show_remove_relation').click(function () {
+  document.getElementById("remove_relation").classList.toggle("show");
+});
+$('.show_pending_post_tool').click(function () {
+  document.getElementById("pending_post_tool").classList.toggle("show");
 });
 
 // Close the dropdown if the user clicks outside of it
@@ -31,47 +34,106 @@ window.onclick = function(event) {
   }
 }
 
-$('#myBtn').click(function () {
-  $('#myModal').css("display", "block");
+$('#open_post_modal').click(function () {
+  $('#post_modal').css("display", "block");
 })
-$('#myBtn1').click(function () {
-  $('#myModal1').css("display", "block");
+$('#close_post_modal').click(function() {
+  $('#post_modal').css("display", "none");
 })
-$('#close').click(function() {
-  $('#myModal').css("display", "none");
+$('#open_group_modal').click(function () {
+  $('#group_modal').css("display", "block");
+  $('.angle').css("display", "none")
 })
-$('#close1').click(function() {
-  $('#myModal1').css("display", "none");
+$('#close_group_modal').click(function() {
+  $('#group_modal').css("display", "none");
+  $('.angle').css("display", "block")
 })
+$('#open_profile_modal').click(function () {
+  $('#profile_modal').css("display", "block");
+  $('.angle').css("display", "none")
+})
+$('#close_profile_modal').click(function() {
+  $('#profile_modal').css("display", "none");
+  $('.angle').css("display", "block")
+})
+
+
 $('#cancel').click(function() {
-  $('#myModal1').css("display", "none");
+  $('#set_mode_post_modal').css("display", "none");
 })
 $('#mode_seleted').click(function() {
-  $('#myModal1').css("display", "none");
+  $('#set_mode_post_modal').css("display", "none");
 })
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-  if (event.target == $('#myModal')[0]) {
-    $('#myModal').css("display", "none");
+  if (event.target == $('#post_modal')[0]) {
+    $('#post_modal').css("display", "none");
   }
-  if (event.target == $('#myModal1')[0]) {
-    $('#myModal1').css("display", "none");
+  if (event.target == $('#post_modal')[0]) {
+    $('#post_modal').css("display", "none");
   }
 }
 
-$("[name='post[mode]']").click(function (e) {
-  $('#_mode').html([
-    { id: "global", name: "Công khai" },
-    { id: "only_friend", name: "Bạn bè" },
-    { id: "only_me", name: "Chỉ mình tôi" },
-  ].find((mode) => mode.id === e.target.value).name)
+$('.friend_url').click(function() {
+  window.location.href = "/groups/"
 })
 
-$('#friend_url').click(function() {
-  window.location.href = "/friends"
+$('.member_requested_url').click(function() {
+  window.location.href += "/members"
 })
 
-// $('#friend_url').click(function(accept) {
-//   $('#friend_url').html = "friends"
-// })
+$('#show_tool_post').click(function() {
+  $('#tool_post').css("display", "block")
+  $('#tool_info').css("display", "none")
+  $('#tool_member').css("display", "none")
+})
+$('#show_tool_info').click(function() {
+  $('#tool_post').css("display", "none")
+  $('#tool_info').css("display", "block")
+  $('#tool_member').css("display", "none")
+})
+$('#show_tool_member').click(function() {
+  $('#tool_post').css("display", "none")
+  $('#tool_info').css("display", "none")
+  $('#tool_member').css("display", "block")
+})
+
+// slide
+
+let slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+
+$('.next').click(function () {
+  plusSlides(1)
+})
+
+$('.prev').click(function () {
+  plusSlides(-1)
+})

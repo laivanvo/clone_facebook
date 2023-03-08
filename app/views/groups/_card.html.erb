@@ -1,0 +1,14 @@
+<% unless group %>
+  <div class="link_wrap">
+    <%= link_to "Xem tất cả", of_friend_groups_path %>
+  </div>
+<% else %>
+  <div class="item">
+    <%= group_avatar(group) %>
+    <h2><%= group.name %></h2>
+    <div class="members"><%= group.members.count %> thành viên . Hơn 10 bài viết mỗi ngày</div>
+    <div class="button_wrap">
+      <%= button_to 'Tham gia nhóm', member_relations_path, params: { relation: { group_id: group.id } } %>
+    </div>
+  </div>
+<% end %>

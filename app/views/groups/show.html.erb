@@ -1,0 +1,12 @@
+<div class='show'>
+  <div class='avatar'>
+    <%= group_avatar(@group) %>
+  </div>
+  <div class='content'>
+    <% if @relation && !@relation.requested? %>
+      <%= render partial: "groups/joined_content", locals: { group: @group, relation: @relation } %>
+    <% else %>
+      <%= render partial: "groups/not_joined_content", locals: { group: @group, relation: @relation } %>
+    <% end %>
+  </div>
+</div>

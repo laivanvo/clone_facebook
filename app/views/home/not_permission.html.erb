@@ -1,0 +1,14 @@
+<div class="not_permission">
+  <div>
+    <div class="img_wrap"><%= image_tag('permissions_gray_wash.svg') %></div>
+    <h2>Bạn hiện không xem được nội dung này</h2>
+    <p>Lỗi này thường do chủ sở hữu chỉ chia sẻ nội dung với một</p>
+    <p>nhóm nhỏ, thay đổi người được xem hoặc đã xóa nội dung.</p>
+    <div class="btn_wrap">
+      <%= button_to "Đi tới Bảng tin", root_path, method: :get %>
+    </div>
+    <div class="link_wrap">
+      <%= link_to "Quay lại", :back %>
+    </div>
+  </div>
+</div>
