@@ -9,7 +9,7 @@
     <div class="item">
       <div class='avatar_box'></div>
       <div class='auth'>
-        <h2><%= profile_name(@user.profile) %></h2>
+        <h2><%= @user.name %></h2>
         <% unless @is_mine %>
           <div class='count_friend'><%= @user.friends.count %> bạn bè • <%= current_user.common_friends(@user.id).count %> bạn chung</div>
         <% end %>
@@ -48,11 +48,11 @@
       <% end %>
       <div class="_item">
         <%= image_tag('home-filled-svgrepo-com.svg') %>
-        <div><%= profile_address(@user.profile) %></div>
+        <div><%= user_address(@user) %></div>
       </div>
       <div class="_item">
         <%= image_tag('avatar-svgrepo-com.svg') %>
-        <div><%= profile_birthday(@user.profile) %></div>
+        <div><%= user_birthday(@user) %></div>
       </div>
       <div class="line"></div>
       <div class="_item" class="friend_url">
@@ -69,7 +69,9 @@
       <% end %>
       <div class='tool'>
         <h2>Bài viết</h2>
-        <button><h2>Bộ lọc</h2></button>
+        <button>
+          <h2>Bộ lọc</h2>
+        </button>
       </div>
       <%= render partial: "posts/card", collection: @user.posts, as: :post %>
     </div>

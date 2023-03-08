@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_17_033656) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_22_021044) do
   create_table "admins", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -23,6 +23,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_17_033656) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "block_comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id", "user_id"], name: "index_block_comments_on_post_id_and_user_id", unique: true
+  end
+
   create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "user_id"
     t.integer "post_id"
@@ -31,6 +39,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_17_033656) do
     t.string "file"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "level"
   end
 
   create_table "groups", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -59,6 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_17_033656) do
     t.datetime "updated_at", null: false
     t.integer "group_id"
     t.integer "status"
+    t.boolean "comment_flag", default: true
   end
 
   create_table "profiles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -67,6 +77,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_17_033656) do
     t.string "avatar"
     t.datetime "birthday"
     t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reactions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "ta_duty_id"
+    t.string "ta_duty_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

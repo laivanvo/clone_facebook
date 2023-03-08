@@ -136,43 +136,6 @@ body {
       width: 50%;
       padding: 10px;
       min-height: calc(100vh - 50px);
-      .post_card {
-        @include _item;
-        div {
-          align-items: center;
-        }
-        .item {
-          margin-bottom: 10px;
-        }
-        .header {
-          @include flex_space_between;
-          .item {
-            @include flex;
-            img {
-              @include img_icon;
-            }
-          }
-          .mode {
-            color: rgb(125, 147, 166);
-          }
-        }
-        .content {
-          img {
-            width: 100%;
-            height: 300px;
-          }
-        }
-        .action {
-          @include flex_space_between;
-          .item {
-            @include flex;
-            img {
-              width: 20px;
-              height: 20px;
-            }
-          }
-        }
-      }
       .create_post {
         @include _item;
         .show_modal_wrap {
@@ -387,7 +350,7 @@ body {
               }
             }
           }
-          #tool_post, #tool_info {
+          #tool_member, #tool_info {
             display: none;
           }
           #tool_member {

@@ -1,0 +1,25 @@
+$("<%= escape_javascript(render(partial: "comments/card", locals: { comment: @comment, be_blocked: current_user.be_blocked(@comment.post_id) })) %>").insertAfter("<%= escape_javascript(@comment.low? ? "#new_comment_post_#{@comment.post_id}" : "#new_rep_comment_#{@comment.comment_id}") %>");
+$(".write_comment").off("click");
+$(".menu_comment").off("click");
+$(".edit_comment").off("click");
+$(".drop_down").find("button").off("click");
+$(".write_comment").click(function () {
+  $(this).parent().parent().children("form").css("display", "block");
+});
+$(".menu_comment").click(function () {
+  $(this).parent().children(".drop_down")[0].classList.toggle("show");
+});
+$(".edit_comment").click(function () {
+  $(this)
+    .parent()
+    .parent()
+    .children(".edit_comment_form")
+    .children("form")
+    .css("display", "block");
+  $(this).parent().parent().children(".text").css("display", "none");
+});
+$(".drop_down")
+  .find("button")
+  .click(function () {
+    $(this).parent().parent().find(".drop_down")[0].classList.toggle("show");
+  });

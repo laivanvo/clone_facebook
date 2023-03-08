@@ -1,0 +1,14 @@
+var html = $("<%= escape_javascript(render(partial: "block_comments/button_not_clicked", locals: { block: @new_block })) %>")
+var button = $("<%= escape_javascript(".block_user_post_#{@new_block[:post_id]}") %>")
+button.html(html)
+$(".drop_down").find("form").off("click");
+$(".drop_down")
+  .find("form")
+  .click(function () {
+    $(this)
+      .parent()
+      .parent()
+      .parent()
+      .find(".drop_down")[0]
+      .classList.toggle("show");
+  });

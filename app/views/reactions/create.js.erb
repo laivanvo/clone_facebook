@@ -1,0 +1,5 @@
+var html = $("<%= escape_javascript(render(partial: "reactions/button_clicked", locals: { reaction: @reaction })) %>")
+var button = $("<%= escape_javascript("#reaction_#{@reaction.ta_duty_type.downcase}_#{@reaction.ta_duty_id}") %>")
+var number_react = $("<%= escape_javascript("#number_react_#{@reaction.ta_duty_type.downcase}_#{@reaction.ta_duty_id}") %>")
+button.html(html)
+number_react.html(<%= escape_javascript(@reaction.ta_duty.reactions.count) %>)

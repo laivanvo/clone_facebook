@@ -1,0 +1,7 @@
+<div id="<%= reaction_tag_id %>">
+  <% if reaction %>
+    <%= render partial: "reactions/button_clicked", locals: { reaction: reaction } %>
+  <% else %>
+    <%= render partial: "reactions/button_not_clicked", locals: { reaction: reaction_params } %>
+  <% end %>
+</div>

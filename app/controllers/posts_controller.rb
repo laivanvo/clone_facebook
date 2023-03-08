@@ -52,6 +52,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:text, :mode, :content, :group_id)
+    params.require(:post).permit(:text, :mode, :content, :group_id, :comment_flag)
   end
 end

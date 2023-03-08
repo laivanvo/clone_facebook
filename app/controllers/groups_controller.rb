@@ -13,6 +13,7 @@ class GroupsController < ApplicationController
   def show
     @post = Post.new
     @relation = current_user.relation_group(params[:id])
+    @new_comment = current_user.comments.new
   end
 
   def members
@@ -36,7 +37,6 @@ class GroupsController < ApplicationController
     end
     redirect_back(fallback_location: root_path)
   end
-
 
   def show_layout
     relation = current_user.relation_group(params[:id])

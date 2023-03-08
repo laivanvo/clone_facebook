@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   resources :posts
   resources :member_relations
   resources :profiles
+  resources :reactions
+  resources :comments
+  resources :block_comments
   resources :groups do
     member do
       get 'members'

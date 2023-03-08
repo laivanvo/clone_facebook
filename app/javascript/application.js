@@ -1,4 +1,6 @@
-import "jquery"
+//= require jquery
+//= require jquery_ujs
+//= require jquery.remotipart
 
 $('.search').keyup(function(e){
   if(e.keyCode == 13)
@@ -70,7 +72,7 @@ window.onclick = function(event) {
   if (event.target == $('#post_modal')[0]) {
     $('#post_modal').css("display", "none");
   }
-  if (event.target == $('#post_modal')[0]) {
+  if (event.target == $('.drop_down')[0]) {
     $('#post_modal').css("display", "none");
   }
 }
@@ -99,8 +101,44 @@ $('#show_tool_member').click(function() {
   $('#tool_member').css("display", "block")
 })
 
-// slide
+$('.submit_form').keypress(function(e){
+  if(e.which == 13){
+       $(this).closest('form').submit();
+       $(this).val("")
+       e.preventDefault();
+   }
+});
 
+$('.edit_comment_form').find('form').submit(function(e){
+  $(this).css('display', 'none');
+  $(this).parent().parent().find('.text').css('display', 'flex');
+});
+
+$('.write_comment').click(function(){
+  $(this).parent().parent().children('form').css('display', 'block');
+});
+
+$('.menu_comment').click(function () {
+  $(this).parent().children('.drop_down')[0].classList.toggle("show");
+})
+
+$('.menu_post').click(function () {
+  $(this).parent().children('.drop_down')[0].classList.toggle("show");
+})
+
+$('.edit_comment').click(function () {
+  $(this).parent().parent().children('.edit_comment_form').find('form').css('display', 'block');
+  $(this).parent().parent().children('.text').css('display', 'none');
+})
+
+$('.drop_down').find('button').click(function() {
+  $(this).parent().parent().find('.drop_down')[0]?.classList.toggle("show");
+})
+
+$('.drop_down').find('form').click(function() {
+  $(this).parent().parent().parent().find('.drop_down')[0].classList.toggle("show");
+})
+// slide
 let slideIndex = 1;
 showSlides(slideIndex);
 

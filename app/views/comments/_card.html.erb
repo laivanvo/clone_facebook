@@ -1,0 +1,47 @@
+<% user_be_blocked = comment.user.be_blocked(comment.post.id) %>
+<% reaction = current_user.reaction(comment.id, :Comment) %>
+<div class="comment_card" id="<%= "comment_card_#{comment.id}" %>">
+  <div class="menu menu_comment">
+    <%= image_tag('dot-menu-more-2-svgrepo-com.svg') %>
+    <div>
+      <%= image_tag('like-svgrepo-com.svg') %>
+      <div id="<%= "number_react_comment_#{comment.id}" %>"><%= comment.reactions.size %></div>
+    </div>
+  </div>
+  <div class="_item text">
+    <%= image_tag('ava1.jpg') %>
+    <div>
+      <strong><%= comment.user_name %></strong>
+      <div><%= comment.text %></div>
+    </div>
+  </div>
+  <div class="edit_comment_form">
+    <%= render partial: "comments/form", locals: { comment: comment, post_id: comment.post_id, comment_id: nil, file_field_id: "update_comment_file_#{comment.id}" } %>
+  </div>
+  <div class="drop_down">
+    <% if current_user.id == comment.user_id %>
+      <button class="edit_comment">chỉnh sửa</button>
+      <%= button_to "xóa", comment_path(comment.id), remote: true, method: :delete %>
+    <% end %>
+    <% if current_user.id == comment.post.user.id && current_user.id != comment.user_id %>
+      <div class="<%= "block_user_post_#{comment.post.id}" %>">
+        <% if user_be_blocked %>
+          <%= render partial: "block_comments/button_clicked", locals: { block: user_be_blocked } %>
+        <% else %>
+          <%= render partial: "block_comments/button_not_clicked", locals: { block: { post_id: comment.post_id, user_id: comment.user_id } } %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="file"><%= comment_file(comment) %></div>
+  <div class="tool">
+
+      <%= render partial: "reactions/item", locals: { reaction_tag_id: "reaction_comment_#{comment.id}", reaction: reaction, reaction_params: { ta_duty_id: comment.id, ta_duty_type: :Comment } } %>
+    <% if !comment.high? && comment.post.comment_flag && be_blocked.nil? %>
+      <strong class="write_comment">phản hồi</strong>
+    <% end %>
+  </div>
+  <%= render partial: "comments/card", collection: comment.comments, as: :comment, locals: { be_blocked: be_blocked } %>
+  <%= render partial: "comments/form", locals: { comment: @new_comment, post_id: comment.post_id, comment_id: comment.id, file_field_id: "rep_comment_file_#{comment.id}" } %>
+  <div id="<%= "new_rep_comment_#{comment.id}" %>"></div>
+</div>

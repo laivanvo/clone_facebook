@@ -1,0 +1,2 @@
+$("<%= escape_javascript("#post_error_#{post_id}") %>").html($("<%= escape_javascript(render(partial: "layouts/error")) %>"))
+$("<%= escape_javascript("#post_error_#{post_id}") %>").attr("tabindex",-1).focus();

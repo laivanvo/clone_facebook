@@ -1,7 +1,7 @@
 <%= link_to user_path(user.token) do %>
   <div class="item">
     <%= user_avatar(user) %>
-    <h2><%= user_name(user) %></h2>
+    <h2><%= user.name %></h2>
     <div><%= current_user.common_friends(user.id).count %> bạn chung</div>
     <div class="button_wrap">
       <%= button_to 'Thêm bạn bè', relations_path, params: { relation: { receiver_id: user.id } } %>

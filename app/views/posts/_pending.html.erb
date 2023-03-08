@@ -3,7 +3,7 @@
     <div class="item">
       <div class="avatar"><%= image_tag('post1.jpg') %></div>
       <div class="auth">
-        <h5 class="user_name"><%= profile_name(post.user.profile) %></h5>
+        <h5 class="user_name"><%= post.user_name %></h5>
         <div class="regime"><%= post.created_at && time_ago_in_words(post.created_at) %> ago</div>
       </div>
     </div>
@@ -17,7 +17,7 @@
       <% if @is_admin %>
         <%= button_to 'Duyệt bài viết', post_path(post.id), params: { post: { status: 'passed', group_id: post.group_id } }, method: :patch %>
       <% end %>
-        <%= button_to 'Xóa bài viết', post_path(post.id), params: { post: { group_id: post.group_id } }, method: :delete %>
+      <%= button_to 'Xóa bài viết', post_path(post.id), params: { post: { group_id: post.group_id } }, method: :delete %>
     </div>
   </div>
 <% end %>
