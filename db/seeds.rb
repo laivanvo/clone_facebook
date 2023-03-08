@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+for i in 0..100 do
+  FactoryBot.create(:user)
+end
+for i in 0..100 do
+  begin
+    FactoryBot.create(:relation)
+  rescue
+  end
+end

@@ -73,6 +73,7 @@ body {
     display: flex;
     background-color: azure;
     position: fixed;
+    z-index: 1;
     .left {
       width: 25%;
       height: 100%;
@@ -149,7 +150,6 @@ body {
   .content_area {
     margin-top: 50px;
     width: 100%;
-    height: 100%;
     display: flex;
     padding-left: 0;
     padding-right: 0;
@@ -166,7 +166,7 @@ body {
         display: flex;
         align-items: center;
         &:hover {
-          background-color: rgba(110, 129, 144, 0.706);
+          background-color: rgba(172, 191, 205, 0.706);
         }
         img {
           width: 25px;
@@ -183,11 +183,44 @@ body {
         height: 1px;
         background-color: rgba(153, 146, 146, 0.696);
       }
+      .setting {
+        display: flex;
+        align-items: center;
+        height: 50px;
+        justify-content: space-between;
+        padding-left: 10px;
+        padding-right: 10px;
+        .img_wrap {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background-color: aliceblue;
+          cursor: pointer;
+          background-color: rgba(172, 191, 205, 0.706);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+            width: 30px;
+            height: 30px;
+          }
+        }
+        input {
+          border-radius: 50px;
+          width: 100%;
+          height: 30px;
+          padding-left: 10px;
+        }
+      }
+    }
+    .left_relation {
+      width: 30%;
+      background-color: #fff;
+      height: 100vh;
     }
     .main {
       margin-left: 25%;
       width: 50%;
-      padding-top: 10px;
       .create_post {
         border-radius: 6px;
         background-color: #fff;
@@ -300,6 +333,7 @@ body {
           justify-content: end;
           align-items: center;
           padding-top: 10px;
+          background-color: #fff !important;
           button {
             cursor: pointer;
             border-radius: 6px;
@@ -309,7 +343,7 @@ body {
             width: 40px;
             height: 30px;
             background-color: #fff;
-            color: #1B74E4;
+            color: #1b74e4;
             border: none;
             &:hover {
               background-color: aliceblue;
@@ -319,7 +353,7 @@ body {
             margin-right: 10px;
             width: 80px;
             height: 30px;
-            background-color: #1B74E4;
+            background-color: #1b74e4;
             color: #fff;
           }
         }
@@ -343,6 +377,38 @@ body {
               }
             }
           }
+        }
+        textarea {
+          width: 100%;
+          height: 160px;
+          border: none;
+          outline: none;
+          margin-top: 10px;
+        }
+        .upload {
+          border: 1px;
+          border-style: groove;
+          height: 50px;
+          margin-bottom: 10px;
+          display: flex;
+          align-items: center;
+          padding-left: 10px;
+          img {
+            margin-left: 30px;
+            cursor: pointer;
+          }
+          input {
+            display: none;
+          }
+        }
+        .button_wrap {
+          background-color: #1b74e4;
+          color: #000;
+          width: 100%;
+          height: 50px;
+          font-size: 30px;
+          border-radius: 6px;
+          cursor: pointer;
         }
       }
       .post_item {
@@ -409,7 +475,7 @@ body {
           padding-left: 0;
           img {
             width: 100%;
-            height: 100%;
+            max-height: 500px;
           }
         }
         .view {
@@ -452,6 +518,138 @@ body {
         }
       }
     }
+    .main_relation {
+      width: 70%;
+      margin-left: 30%;
+      background-color: #ecf3ff;
+      .tag {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+      .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 40px;
+        padding-right: 40px;
+        margin-bottom: 20px;
+        .item {
+          border: solid;
+          min-width: 30%;
+          img {
+            width: 236px;
+            height: 236px;
+          }
+          .name {
+            padding-left: 30px;
+          }
+        }
+      }
+    }
+    .main_friend {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      div {
+        .img_wrap {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+            width: 100px;
+            height: 100px;
+          }
+        }
+      }
+    }
+    .main_profile {
+      background-color: aliceblue;
+      .cover_image {
+        img {
+          width: 100%;
+          height: 400px;
+          position: absolute;
+        }
+        background-color: #fff;
+        border-radius: 6px;
+      }
+      .box {
+        width: 100%;
+        height: 350px;
+        background-color: #fff;
+        border-radius: 6px;
+      }
+      .info {
+        display: flex;
+        background-color: #fff;
+        border-radius: 6px;
+        .avatar {
+          img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            position: absolute;
+          }
+        }
+        .avatar_box {
+          width: 200px;
+          height: 200px;
+        }
+        .relation {
+          padding-top: 75px;
+          padding-left: 50px;
+        }
+        .button_wrap {
+          padding-top: 75px;
+          padding-left: 350px;
+        }
+      }
+      .tool {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 30px;
+        padding-right: 30px;
+        background-color: #fff;
+        border-radius: 6px;
+        button {
+          width: 100px;
+          height: 50px;
+          border-radius: 6px;
+          cursor: pointer;
+          border: none;
+          background-color: #fff;
+          &:hover {
+            background-color: aliceblue;
+          }
+        }
+      }
+      .line {
+        display: flex;
+        width: 95%;
+        height: 1px;
+        background-color: rgba(153, 146, 146, 0.696);
+        margin-left: 10px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+      }
+      .post {
+        padding-left: 30px;
+        padding-right: 30px;
+        .post_item {
+          border-radius: 6px;
+          background-color: #fff;
+          width: 100%;
+          padding-bottom: 10px;
+          margin-top: 20px;
+        }
+      }
+    }
     .right {
       position: fixed;
       margin-left: 75%;
@@ -468,7 +666,7 @@ body {
         border-radius: 6px;
         padding-left: 10px;
         &:hover {
-          background-color: rgba(110, 129, 144, 0.706);
+          background-color: rgba(172, 191, 205, 0.706);
         }
         img {
           width: 30px;
@@ -495,9 +693,39 @@ body {
       }
     }
   }
+  .notice {
+    color: red;
+    padding: 30px;
+    background-color: azure;
+    font-size: 25px;
+  }
 }
 
 .signDropdown {
+  display: none;
+  background-color: #ffff;
+  min-width: 300px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  transform: translate(-30px, 70px);
+  border-radius: 6px;
+  padding: 10px;
+  position: absolute;
+}
+
+.signDropdown a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  border-radius: 6px;
+  &:hover {
+    background-color: aliceblue;
+  }
+}
+
+.friend_dropdown {
   display: none;
   position: absolute;
   background-color: #ffff;
@@ -505,13 +733,13 @@ body {
   overflow: auto;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  transform: translate(0px, 0px);
+  transform: translate(700px, 500px);
   top: 0;
   border-radius: 6px;
   padding: 10px;
 }
 
-.signDropdown a {
+.friend_dropdown a {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
@@ -577,6 +805,11 @@ body {
         align-items: center;
         margin-top: 0;
         margin-bottom: 5px;
+      }
+      #myBtn1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
   }

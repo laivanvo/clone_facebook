@@ -315,5 +315,5 @@ Devise.setup do |config|
 
   config.omniauth :facebook, ENV['facebook_app_id'], ENV['facebook_app_secret']
 
-  config.omniauth :google_oauth2, ENV["google_auth2_client_id"], ENV["google_auth2_client_secret"]
+  config.omniauth :google_oauth2, ENV['google_auth2_client_id'], ENV['google_auth2_client_secret']
 end
