@@ -1,0 +1,31 @@
+<div class="create_post">
+  <div class="input">
+    <%= image_tag('ava1.jpg') %>
+    <input id="open_create_post_modal" placeholder="Lại Văn ơi, bạn đang nghĩ gì thế?"/>
+  </div>
+  <div>
+    <div class="line"></div>
+  </div>
+  <div class="tool">
+    <div class="item">
+      <div>
+        <%= image_tag('video-svgrepo-com.svg') %>
+        Video trực tiếp
+      </div>
+    </div>
+    <div class="item">
+      <div>
+        <%= image_tag('image-svgrepo-com.svg') %>
+        Ảnh/video
+      </div>
+    </div>
+    <div class="item">
+      <div>
+        <%= image_tag('emo-sunglasses-svgrepo-com.svg') %>
+        Cảm xúc/Hoạt động
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render partial: "modal/posts/form", locals: { post: @post, group: group } %>

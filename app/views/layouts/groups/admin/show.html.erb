@@ -13,10 +13,10 @@
   <body>
     <%= render "layouts/header" %>
     <div class="content_area">
-      <div class="left left_relation">
-        <%= render "layouts/relations/left" %>
+      <div class="left left_relation left_group">
+        <%= render "layouts/groups/admin/left" %>
       </div>
-      <div class="main main_relation">
+      <div class="main main_relation main_group">
         <%= yield %>
       </div>
     </div>

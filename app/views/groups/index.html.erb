@@ -1,0 +1,38 @@
+<div class="setting">
+  <div class="title">
+    <h1>Nhóm của bạn bè</h1>
+    Nhóm mà bạn bè tham gia.
+  </div>
+  <div>Xem tất cả</div>
+</div>
+<%= image_tag('angle-left-svgrepo-com.svg', class: "angle_left") %>
+<div class="items">
+  <% @recommend_groups.each do |group| %>
+  <%= link_to group_path(group.id) do %>
+    <div class="item">
+      <%= image_tag(group.avatar_url ? group.avatar_url : 'cover_image.jpg') %>
+      <h2><%= group.name %></h2>
+      <div class="members"><%= group.members.count %> thành viên . Hơn 10 bài viết mỗi ngày</div>
+      <div class="button_wrap">
+        <%= button_to 'Tham gia nhóm', relation_members_path, params: { relation: { group_id: group.id } } %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+</div>
+<%= image_tag('angle-right-svgrepo-com.svg', class: "angle_right") %>
+<%= will_paginate @recommend_groups, :page_links=>false %>
+<div class="setting">
+  <h1>Gợi ý cho bạn</h1>
+</div>
+<div class="items">
+  <% @recommend_groups.each do |group| %>
+  <%= link_to group_path(group.id) do %>
+    <div class="item">
+      <%= image_tag(group.avatar_url ? group.avatar_url : 'cover_image.jpg') %>
+      <div><%= group.name %></div>
+    </div>
+  <% end %>
+<% end %>
+
+</div>

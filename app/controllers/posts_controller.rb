@@ -4,6 +4,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:text, :mode, :content)
+    params.require(:post).permit(:text, :mode, :content, :group_id, :in_queue)
   end
 end

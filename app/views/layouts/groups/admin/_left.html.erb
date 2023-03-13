@@ -1,0 +1,41 @@
+<div class="setting">
+  <div class="img_wrap">
+    <%= image_tag(@group.avatar_url || 'cover_image.jpg') %>
+  </div>
+  <h3 class="name"><%= @group.name %></h3>
+</div>
+<div class="button_wrap">
+  <button>Mời</button>
+</div>
+<div class="setting">
+  <h1>Quản lý</h1>
+</div>
+<div class="line"></div>
+<div class="item">
+  <%= image_tag('home-filled-svgrepo-com.svg') %>
+  <div>
+    <div>Trang chủ</div>
+    <div class="info">0 bài mới hôm nay</div>
+  </div>
+</div>
+<div class="item">
+  <%= image_tag('request-send-svgrepo-com.svg') %>
+  <div>
+    <div>Yêu cầu làm thành viên</div>
+    <div class="info">0 yêu cầu mới hôm nay</div>
+  </div>
+</div>
+<div class="item">
+  <%= image_tag('request-send-svgrepo-com.svg') %>
+  <div>
+    <div>Đang chờ phê duyệt</div>
+    <div class="info">0 bài mới hôm nay</div>
+  </div>
+</div>
+<div class="item">
+  <%= image_tag('request-send-svgrepo-com.svg') %>
+  <div>
+    <div>Có thể là spam</div>
+    <div class="info">Hôm nay có 0 mục mới</div>
+  </div>
+</div>
