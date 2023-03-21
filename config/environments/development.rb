@@ -59,6 +59,12 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
+  # Do not compress assets
+  config.assets.compress = false
+
+  # Expands the lines which load the assets
+  config.assets.debug = true
+
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 

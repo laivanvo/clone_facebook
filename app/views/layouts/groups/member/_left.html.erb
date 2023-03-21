@@ -1,0 +1,24 @@
+<div class="_item">
+  <%= group_avatar(@group) %>
+  <h3 class="name"><%= @group.name %></h3>
+</div>
+<h1>Quản lý</h1>
+<div class="line"></div>
+<div class="_item">
+  <%= image_tag('home-filled-svgrepo-com.svg') %>
+  <%= link_to group_path(@group.id) do %>
+    <div>
+      <div>Trang chủ</div>
+      <div class="info">0 bài mới hôm nay</div>
+    </div>
+  <% end %>
+</div>
+<div class="_item">
+  <%= image_tag('request-send-svgrepo-com.svg') %>
+  <%= link_to pending_posts_group_path(@group.id) do %>
+    <div>
+      <div>Đang chờ phê duyệt</div>
+      <div class="info">0 bài mới hôm nay</div>
+    </div>
+  <% end %>
+</div>

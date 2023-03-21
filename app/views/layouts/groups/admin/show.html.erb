@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Facebook Clone</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <%= render "layouts/header" %>
+    <div class="content_area">
+      <div class="left left_relation left_group">
+        <%= render "layouts/groups/admin/left" %>
+      </div>
+      <div class="main main_relation main_group">
+        <%= render "layouts/error" %>
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

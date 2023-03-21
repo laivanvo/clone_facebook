@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Workspace</title>
+    <title>Facebook Clone</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -17,6 +17,7 @@
         <%= render "layouts/left" %>
       </div>
       <div class="main">
+        <%= render "layouts/error" %>
         <%= yield %>
       </div>
       <div class="right">

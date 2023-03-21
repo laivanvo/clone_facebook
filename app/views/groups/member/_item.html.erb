@@ -1,0 +1,12 @@
+<div class="item">
+  <div class="info">
+    <%= request.user.name %>
+  </div>
+  <div class="button_wrap">
+    <div class="accept">
+      <%= button_to "Chấp nhận", member_relation_path(request.id), params: { relation: { group_id: @group.id, user_id: request.id, relation_type: 'joined' } }, method: :patch %>
+    </div>
+    <div class="delete">
+      <%= button_to "Xóa yêu cầu", member_relation_path(request.id), params: { relation: { group_id: @group.id } }, method: :delete %></div>
+  </div>
+</div>

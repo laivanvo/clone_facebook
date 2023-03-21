@@ -1,0 +1,54 @@
+<div class="info_item">
+  <h2>Giới thiệu về nhóm này</h2>
+  <div class="item">
+    <div class="row"><%= group_mode(group) %></div>
+    <div class="row"><%= group_mode_info(group) %></div>
+  </div>
+  <div class="item">
+    <div class="row">Hiển thị</div>
+    <div class="row">Ai cũng có thể tìm thấy nhóm này.</div>
+  </div>
+  <div class="item">
+    <div class="row">Lịch sử</div>
+    <div class="row"><%= group_created_at(group) %></div>
+  </div>
+</div>
+
+  <div class="info_item">
+    <h2>Thành viên  · <%= group.member_relations.joined.count %></h2>
+    <div class="item">
+      <div class="row"><%= group.user.name %> là quản trị viên. <%= group.user.name %> là người kiểm duyệt.</div>
+    </div>
+  </div>
+
+  <div class="info_item">
+    <h2>Hoạt động</h2>
+    <div class="item">
+      <div class="row">Hôm nay có 11 bài viết mới</div>
+      <div class="row">345 trong tháng trước</div>
+    </div>
+    <div class="item">
+      <div class="row">Tổng cộng 15.939 thành viên</div>
+      <div class="row">+ 190 trong tuần qua</div>
+    </div>
+    <div class="item">
+      <div class="row">Ngày tạo: 3 năm trước</div>
+    </div>
+  </div>
+
+  <div class="info_item">
+    <h2>Quy tắc nhóm của quản trị viên</h2>
+    <div class="item">
+      <div class="row">Hãy tử tế và lịch sự</div>
+      <div class="row">Tất cả chúng ta cùng có mặt ở đây để tạo nên một môi trường thân thiện. Hãy tôn trọng tất cả mọi người. Tranh luận lành mạnh là điều hết sức tự nhiên nhưng cũng cần tử tế.  </div>
+    </div>
+    <div class="item">
+      <div class="row">Hãy tử tế và lịch sự</div>
+      <div class="row">Tất cả chúng ta cùng có mặt ở đây để tạo nên một môi trường thân thiện. Hãy tôn trọng tất cả mọi người. Tranh luận lành mạnh là điều hết sức tự nhiên nhưng cũng cần tử tế.  </div>
+    </div>
+    <div class="item">
+      <div class="row">Hãy tử tế và lịch sự</div>
+      <div class="row">Tất cả chúng ta cùng có mặt ở đây để tạo nên một môi trường thân thiện. Hãy tôn trọng tất cả mọi người. Tranh luận lành mạnh là điều hết sức tự nhiên nhưng cũng cần tử tế.  </div>
+    </div>
+  </div>
+</div>

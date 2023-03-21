@@ -1,0 +1,26 @@
+<div id="group_modal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="close_group_modal">&times;</span>
+    <div class="title">
+      <h4>Tạo nhóm mới</h4>
+    </div>
+    <div class="auth">
+      <div class="avatar">
+        <%= image_tag('ava1.jpg') %>
+      </div>
+      <div class="name">
+        <h3><%= profile_name(current_user.profile) %></h3>
+      </div>
+    </div>
+    <%= form_with model: group do |form| %>
+      <%= form.select :mode, [['Chọn chế độ của nhóm', nil], ['riêng tư', false], ['công khai', false]] %>
+      <div class="input_wrap"><%= form.text_field :name, placeholder: "Tên nhóm" %></div>
+      <div class="upload">
+        thêm ảnh đại diện cho nhóm của bạn
+        <label for="group_avatar"><%= image_tag('img_icon.png') %></label>
+        <%= form.file_field :avatar, accept:'image/*' %>
+      </div>
+      <button class="button_wrap" type="submit">Tạo nhóm</button>
+    <% end %>
+  </div>
+</div>

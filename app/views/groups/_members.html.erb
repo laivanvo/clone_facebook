@@ -1,0 +1,46 @@
+<div class="member">
+  <h1>Thành viên · <%= group.joiners.count %></h1>
+  <div class="search">
+    <input placeholder="Tìm thành viên" />
+  </div>
+  <div class="line"></div>
+  <div class="admin">
+    <h1>Quản trị viên & người kiểm duyệt · <%= group.admins.count %></h1>
+    <div class="items">
+      <% if group.admins.empty? %>
+        <div class="empty_box">
+          <div class="content">
+            <div class="img_wrap">
+              <%= image_tag('null_states_people_gray_wash.svg') %>
+            </div>
+            <div><h2>Không có Quản trị viên & người kiểm duyệt.</h2></div>
+          </div>
+        </div>
+      <% else %>
+        <% group.admins.each do |relation| %>
+          <%= render partial: "users/item", locals: { user: relation.user } %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="member">
+    <h1>Thành viên · <%= group.members.count %></h1>
+    <div class="items">
+      <% if group.members.empty? %>
+        <div class="empty_box">
+          <div class="content">
+            <div class="img_wrap">
+              <%= image_tag('null_states_people_gray_wash.svg') %>
+            </div>
+            <div><h2>Không có thành viên nào.</h2></div>
+          </div>
+        </div>
+      <% else %>
+        <% group.members.each do |relation| %>
+          <%= render partial: "users/item", locals: { user: relation.user } %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

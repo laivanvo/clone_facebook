@@ -1,0 +1,8 @@
+<div class="tool">
+  <div class="avatar_wrap">
+    <%= group_avatar(@group) %>
+  </div>
+</div>
+<div class="pending_posts">
+  <%= render partial: "posts/pending", collection: @pending_posts, as: :post %>
+</div>

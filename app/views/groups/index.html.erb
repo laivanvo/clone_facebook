@@ -1,0 +1,27 @@
+<div class="setting">
+  <div class="title">
+    <h1>Nhóm của bạn bè</h1>
+    Nhóm mà bạn bè tham gia.
+  </div>
+  <div>Xem tất cả</div>
+</div>
+<div class="slideshow-container">
+  <% @friend_groups.to_a.push(nil).each_slice(2).each do |groups| %> <%# push nil to list to check when item is nil then display link show full list group %>
+    <div class="mySlides fade">
+      <div  class="item_wrap">
+        <%= render partial: "groups/card", collection: groups, as: :group %>
+      </div>
+    </div>
+  <% end %>
+  <!-- Next and previous buttons -->
+  <a class="prev">&#10094;</a>
+  <a class="next">&#10095;</a>
+</div>
+<br>
+
+<!-- The dots/circles -->
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+</div>

@@ -1,0 +1,25 @@
+<div class="member">
+  <div class="tool">
+    <div class="avatar_wrap">
+      <%= group_avatar(@group) %>
+    </div>
+    <h1>Yêu cầu làm thành viên</h1>
+    <div class="search">
+      <input placeholder="Tìm kiếm theo tên" />
+    </div>
+  </div>
+  <div class="items">
+    <% if @requests.empty? %>
+      <div class="empty_box">
+        <div class="content">
+          <div class="img_wrap">
+            <%= image_tag('null_states_people_gray_wash.svg') %>
+          </div>
+          <div><h2>Không có thành viên đang chờ nào.</h2></div>
+        </div>
+      </div>
+    <% else %>
+      <%= render partial: "groups/member/item", collection: @requests, as: :request %>
+    <% end %>
+  </div>
+</div>

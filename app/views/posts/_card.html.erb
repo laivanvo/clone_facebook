@@ -1,0 +1,52 @@
+<div class="post_card">
+  <div class="header item">
+    <div class="item">
+      <div class="avatar">
+        <%= image_tag('post1.jpg') %>
+      </div>
+      <div class="auth">
+        <h5 class="user_name"><%= user_name(post.user) %></h5>
+        <div class="mode"><%= post_created_at(post) %></div>
+    </div>
+    </div>
+    <div class="item">
+      <%= image_tag('dot-menu-more-2-svgrepo-com.svg') %>
+    </div>
+  </div>
+  <div class="text item">
+    <%= post.text %>
+  </div>
+  <div class="content item">
+    <%= post_content(post) %>
+  </div>
+  <div class="action item">
+    <div class="item">
+      <%= image_tag('like-svgrepo-com.svg') %>
+      <div class="number_react">10</div>
+    </div>
+    <div class="item">
+      <div class="number_comment">10</div>
+      <div class="comment">bình luận</div>
+    </div>
+    <div class="item">
+      <div class="number_share">10</div>
+      <div class="share">lượt chia sẻ</div>
+    </div>
+  </div>
+  <div class="line">
+  </div>
+  <div class="action item">
+    <div class="item">
+      <%= image_tag('like-svgrepo-com.svg') %>
+      <div class="number_react">Thích</div>
+    </div>
+    <div class="item">
+      <%= image_tag('chat-square-svgrepo-com.svg') %>
+      <div class="comment">Bình luận</div>
+    </div>
+    <div class="item">
+      <%= image_tag('share-svgrepo-com.svg') %>
+      <div class="share">Chia sẻ</div>
+    </div>
+  </div>
+</div>
