@@ -1,11 +1,15 @@
 class User < ApplicationRecord
   has_one :profile
-  has_many :senders, foreign_key: 'sender_id', class_name: 'Relation'
-  has_many :receivers, foreign_key: 'receiver_id', class_name: 'Relation'
+  has_many :senders, foreign_key: "sender_id", class_name: "Relation"
+  has_many :receivers, foreign_key: "receiver_id", class_name: "Relation"
   has_many :posts
   has_many :groups
   has_many :member_relations
+  has_many :reactions
+  has_many :comments
+  has_many :block_comments
 
+  delegate :name, :avatar_url, :address, :birthday, to: :profile
 
   before_create :add_token
   after_create :add_profile
@@ -15,9 +19,9 @@ class User < ApplicationRecord
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if (data = session['devise.facebook_data'] &&
-                session['devise.facebook_data']['extra']['raw_info']) && user.email.blank?
-        user.email = data['email']
+      if (data = session["devise.facebook_data"] &&
+                 session["devise.facebook_data"]["extra"]["raw_info"]) && user.email.blank?
+        user.email = data["email"]
       end
     end
   end
@@ -77,5 +81,13 @@ class User < ApplicationRecord
 
   def add_profile
     self.create_profile name: self.name
+  end
+
+  def reaction(ta_duty_id, ta_duty_type)
+    self.reactions.find_by(ta_duty_id: ta_duty_id, ta_duty_type: ta_duty_type)
+  end
+
+  def be_blocked(post_id)
+    self.block_comments.where(post_id: post_id).first
   end
 end

@@ -1,9 +1,10 @@
 class HomeController < ApplicationController
   layout "not_permission", only: [:not_permission]
+
   def index
-    @post = Post.new
-    @friends = current_user.friends
-    @posts = current_user.home_posts
+    @post = current_user.posts.new
+    @new_comment = current_user.comments.new
+    @posts = current_user.home_posts.includes(:comments, :reactions)
   end
 
   def not_permission

@@ -1,52 +1,57 @@
+<% be_blocked = current_user.be_blocked(post.id) %>
+<% reaction = current_user.reaction(post.id, :Post) %>
 <div class="post_card">
-  <div class="header item">
-    <div class="item">
-      <div class="avatar">
-        <%= image_tag('post1.jpg') %>
-      </div>
-      <div class="auth">
-        <h5 class="user_name"><%= user_name(post.user) %></h5>
+  <div id="<%= "post_error_#{post.id}" %>"></div>
+  <div>
+    <div class="header item">
+      <%= render layout: "users/item", locals: { user: post.user } do %>
         <div class="mode"><%= post_created_at(post) %></div>
+      <% end %>
+      <%= render partial: "posts/menu", locals: { post: post } %>
     </div>
+    <div class="text item">
+      <%= post.text %>
     </div>
-    <div class="item">
-      <%= image_tag('dot-menu-more-2-svgrepo-com.svg') %>
+    <div class="content item">
+      <%= post_content(post) %>
     </div>
-  </div>
-  <div class="text item">
-    <%= post.text %>
-  </div>
-  <div class="content item">
-    <%= post_content(post) %>
-  </div>
-  <div class="action item">
-    <div class="item">
-      <%= image_tag('like-svgrepo-com.svg') %>
-      <div class="number_react">10</div>
+    <div class="action item">
+      <div class="item">
+        <%= image_tag('like-svgrepo-com.svg') %>
+        <div id="<%= "number_react_post_#{post.id}" %>"><%= post.reactions.size %></div>
+      </div>
+      <div class="item">
+        <div class="number_comment"><%= post.comments.size %></div>
+        <div class="comment">bình luận</div>
+      </div>
+      <div class="item">
+        <div class="number_share">10</div>
+        <div class="share">lượt chia sẻ</div>
+      </div>
     </div>
-    <div class="item">
-      <div class="number_comment">10</div>
-      <div class="comment">bình luận</div>
+    <div class="line">
     </div>
-    <div class="item">
-      <div class="number_share">10</div>
-      <div class="share">lượt chia sẻ</div>
-    </div>
-  </div>
-  <div class="line">
-  </div>
-  <div class="action item">
-    <div class="item">
-      <%= image_tag('like-svgrepo-com.svg') %>
-      <div class="number_react">Thích</div>
-    </div>
-    <div class="item">
-      <%= image_tag('chat-square-svgrepo-com.svg') %>
-      <div class="comment">Bình luận</div>
-    </div>
-    <div class="item">
-      <%= image_tag('share-svgrepo-com.svg') %>
-      <div class="share">Chia sẻ</div>
+    <div class="action item">
+      <%= render partial: "reactions/item", locals: { reaction_tag_id: "reaction_post_#{post.id}", reaction: reaction, reaction_params: { ta_duty_id: post.id, ta_duty_type: :Post } } %>
+      <div class="item">
+        <%= image_tag('chat-square-svgrepo-com.svg') %>
+        <div class="comment">Bình luận</div>
+      </div>
+      <div class="item">
+        <%= image_tag('share-svgrepo-com.svg') %>
+        <div class="share">Chia sẻ</div>
+      </div>
     </div>
   </div>
+  <% if post.comment_flag %>
+    <% if be_blocked.nil? %>
+      <%= render partial: "comments/form", locals: { comment: @new_comment, post_id: post.id, comment_id: nil, file_field_id: "comment_file_post_#{post.id}" } %>
+    <% else %>
+      <div class="noti">bạn đã bị chủ bài viết chặn bình luận</div>
+    <% end %>
+  <% else %>
+    <div class="noti">bài viết đã tắt tính năng bình luận</div>
+  <% end %>
+  <div id="<%= "new_comment_post_#{post.id}" %>"></div>
+  <%= render partial: "comments/card", collection: post.comments.low.includes(:reactions), as: :comment, locals: { be_blocked: be_blocked } %>
 </div>

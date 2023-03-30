@@ -1,0 +1,7 @@
+<div class="menu_post">
+  <%= image_tag('dot-menu-more-2-svgrepo-com.svg') %>
+</div>
+<div class="drop_down menu">
+  <% button_text = post.comment_flag ? "tắt bình luận" : "mở bình luận" %>
+  <%= button_to button_text, post_path(post.id), method: :patch, params: { post: { comment_flag: !post.comment_flag } } %>
+</div>

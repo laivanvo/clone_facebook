@@ -1,5 +1,12 @@
 <% flash.each do |type, msg| %>
   <div class='notice error'>
-    <%= msg %>
+    <% if msg.instance_of? String %>
+      <%= msg %>
+    <% else %>
+      <% msg.each do |key, value| %>
+        <%= key %> : <%= value[0] %>
+        <br>
+      <% end %>
+    <% end %>
   </div>
 <% end %>

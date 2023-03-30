@@ -100,3 +100,7 @@ gem 'rubocop-rails', require: false
 gem 'factory_bot_rails'
 
 gem 'faker'
+
+gem 'pry-rails'
+
+gem 'remotipart', '~> 1.2'

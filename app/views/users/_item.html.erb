@@ -1,2 +1,13 @@
-<%= link_to profile_path do %>
-<% end %>
+<div class="item">
+  <%= link_to user_path(user.token) do %>
+    <div>
+      <%= user_avatar(user) %>
+    </div>
+  <% end %>
+  <div>
+    <%= link_to user_path(user.token) do %>
+      <strong><%= user.name %></strong>
+    <% end %>
+    <%= yield %>
+  </div>
+</div>

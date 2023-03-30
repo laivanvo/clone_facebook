@@ -1,0 +1,10 @@
+<%= form_with model: comment, local: false do |f| %>
+  <div class="_item comment">
+    <%= image_tag('ava1.jpg') %>
+    <%= f.text_field :text, {class: "input_search submit_form", placeholder: "viết bình luận"} %>
+    <label for="<%= file_field_id %>"><%= image_tag('camera-svgrepo-com.svg') %></label>
+    <%= f.file_field :file, accept:'image/video/*', id: file_field_id, class: "file" %>
+    <%= f.hidden_field :post_id, value: post_id %>
+    <%= f.hidden_field :comment_id, value: comment_id %>
+  </div>
+<% end %>
