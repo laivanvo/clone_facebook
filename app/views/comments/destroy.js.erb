@@ -1,1 +1,2 @@
 $("<%= escape_javascript("#comment_card_#{@comment.id}") %>").remove();
+$("<%= escape_javascript("#number_comment_post_#{@comment.post_id}") %>").html("<%= @comment.post.comments.count %>")

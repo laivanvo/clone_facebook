@@ -7,8 +7,11 @@ class Comment < ApplicationRecord
   has_many :reactions, as: :ta_duty
 
   delegate :name, to: :user, prefix: true
+  delegate :comment_flag, to: :post, prefix: true
 
   before_create :set_param_new
+
+  paginates_per 3
 
   mount_uploader :file, CommentFileUploader
 

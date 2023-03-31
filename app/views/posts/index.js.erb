@@ -1,0 +1,7 @@
+$('#posts').append('<%= j render partial: "posts/card", collection: @posts, as: :post %>');
+<% if @posts.next_page %>
+  $('.pagination_post').find('.pagination').replaceWith('<%= j paginate @posts %>');
+<% else %>
+  $(window).off('scroll');
+  $('.pagination_post').find('.pagination').remove();
+<% end %>

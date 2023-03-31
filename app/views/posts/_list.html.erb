@@ -1,0 +1,5 @@
+<%= render partial: "posts/create", locals: { group_id: group_id } %>
+<div id="posts"><%= render partial: "posts/card", collection: posts, as: :post %></div>
+<div id="infinite-scrolling" class="pagination_post">
+  <%= paginate posts, params: {controller: 'posts', action: 'index', format: :js, group_id: group_id } %>
+</div>

@@ -1,5 +1,11 @@
-$("<%= escape_javascript(render(partial: "comments/card", locals: { comment: @comment, be_blocked: current_user.be_blocked(@comment.post_id) })) %>").insertAfter("<%= escape_javascript(@tag_id) %>")
-$("<%= escape_javascript("#number_comment_post_#{@comment.post_id}") %>").html("<%= @comment.post.comments.count %>")
+$("<%= j "##{@tag_id}" %>").children(".items").append("<%= j render partial: "comments/card", collection: @comments, as: :comment %>");
+<% if @comments.next_page %>
+  $("<%= j "#pagi_#{@tag_id}" %>").children(".pagination").replaceWith("<%= j paginate @comments %>");
+  $(window).scrollTop($("<%= j "##{@tag_id}" %>").children(".load_comment").position().top);
+<% else %>
+  $("<%= j "pagi_#{@tag_id}" %>").children(".pagination").remove();
+  $("<%= j "##{@tag_id}" %>").children(".load_comment").remove();
+<% end %>
 $(".write_comment").off("click");
 $(".menu_comment").off("click");
 $(".edit_comment").off("click");

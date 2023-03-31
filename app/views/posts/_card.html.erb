@@ -1,5 +1,6 @@
 <% be_blocked = current_user.be_blocked(post.id) %>
 <% reaction = current_user.reaction(post.id, :Post) %>
+<% comments = post.comments.low.includes(:reactions).page %>
 <div class="post_card">
   <div id="<%= "post_error_#{post.id}" %>"></div>
   <div>
@@ -21,8 +22,8 @@
         <div id="<%= "number_react_post_#{post.id}" %>"><%= post.reactions.size %></div>
       </div>
       <div class="item">
-        <div class="number_comment"><%= post.comments.size %></div>
-        <div class="comment">bình luận</div>
+        <div id="<%= "number_comment_post_#{post.id}" %>"><%= post.comments.size %></div>
+        <div class="comment open_comment">bình luận</div>
       </div>
       <div class="item">
         <div class="number_share">10</div>
@@ -35,7 +36,7 @@
       <%= render partial: "reactions/item", locals: { reaction_tag_id: "reaction_post_#{post.id}", reaction: reaction, reaction_params: { ta_duty_id: post.id, ta_duty_type: :Post } } %>
       <div class="item">
         <%= image_tag('chat-square-svgrepo-com.svg') %>
-        <div class="comment">Bình luận</div>
+        <div class="comment open_comment">Bình luận</div>
       </div>
       <div class="item">
         <%= image_tag('share-svgrepo-com.svg') %>
@@ -53,5 +54,11 @@
     <div class="noti">bài viết đã tắt tính năng bình luận</div>
   <% end %>
   <div id="<%= "new_comment_post_#{post.id}" %>"></div>
-  <%= render partial: "comments/card", collection: post.comments.low.includes(:reactions), as: :comment, locals: { be_blocked: be_blocked } %>
+  <div class="comments" id="<%= "comment_post_#{post.id}" %>">
+    <div class="items"><%= render partial: "comments/card", collection: comments, as: :comment %></div>
+    <div id="<%= "pagi_comment_post_#{post.id}" %>">
+      <%= paginate comments, params: {controller: 'comments', action: 'index', format: :js, post_id: post.id } %>
+    </div>
+    <strong class="load_comment">xem tiếp</strong>
+  </div>
 </div>
