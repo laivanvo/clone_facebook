@@ -1,4 +1,3 @@
 <div class="home">
-  <%= render partial: "posts/create", locals: { group_id: nil } %>
-  <%= render partial: "posts/card", collection: @posts, as: :post %>
+  <%= render partial: "posts/list", locals: { group_id: nil, posts: @posts } %>
 </div>

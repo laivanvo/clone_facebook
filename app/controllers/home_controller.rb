@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   def index
     @post = current_user.posts.new
     @new_comment = current_user.comments.new
-    @posts = current_user.home_posts.includes(:comments, :reactions)
+    @posts = current_user.home_posts.includes(:comments, :reactions).page
   end
 
   def not_permission

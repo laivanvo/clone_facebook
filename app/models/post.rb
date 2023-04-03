@@ -9,5 +9,7 @@ class Post < ApplicationRecord
 
   delegate :name, to: :user, prefix: true
 
+  paginates_per 3
+
   mount_uploader :content, PostFileUploader
 end

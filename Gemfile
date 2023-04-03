@@ -104,3 +104,6 @@ gem 'faker'
 gem 'pry-rails'
 
 gem 'remotipart', '~> 1.2'
+
+gem "kaminari"
+gem "bootstrap-kaminari-views"

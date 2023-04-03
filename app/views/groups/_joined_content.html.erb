@@ -16,7 +16,7 @@
 
 <div class="tool_item">
   <div id="tool_post">
-    <%= render partial: "groups/posts", locals: { group: group, relation: relation } %>
+    <%= render partial: "posts/list", locals: { group_id: group.id, posts: group.posts.passed.page } %>
   </div>
   <div id="tool_info">
     <%= render partial: "groups/info", locals: { group: group, relation: relation } %>

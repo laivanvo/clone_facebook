@@ -244,4 +244,16 @@ body {
       height: 12px;
     }
   }
+  .pagination {
+    display: none;
+  }
+  .comments, .replies {
+    display: none;
+  }
+  .comments {
+    .items {
+      display: block !important;
+      height: auto !important;
+    }
+  }
 }

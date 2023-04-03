@@ -44,7 +44,7 @@ class User < ApplicationRecord
   end
 
   def home_posts
-    Post.where(user_id: (self.friends.pluck(:id).push(self.id))).order(created_at: :desc)
+    Post.where(user_id: (self.friends.pluck(:id).push(self.id)), group_id: nil).order(created_at: :desc)
   end
 
   def relation(check_user_id)
