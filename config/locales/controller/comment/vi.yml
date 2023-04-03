@@ -1,0 +1,6 @@
+vi:
+  comments:
+    save:
+      comment_flag_off: "Bài viết đã tắt tính năng bình luận."
+      be_block: ".Bạn đã bị chặn bình luận."
+      reached_limit: "Bình luận đã ở mức cao nhất."

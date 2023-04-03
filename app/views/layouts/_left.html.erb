@@ -1,31 +1,31 @@
 <div class="_item">
   <%= image_tag('home-filled-svgrepo-com.svg') %>
-  <div>Trang chủ</div>
+  <div><%= t "share.home" %></div>
 </div>
 <div class="_item">
   <%= image_tag('avatar-svgrepo-com.svg') %>
-  <div>Vo Lại Văn</div>
+  <div><%= current_user.name %></div>
 </div>
 <div class="line"></div>
 <div class="_item" class="friend_url">
   <%= image_tag('friend-3-svgrepo-com.svg') %>
-  <div>Bạn bè</div>
+  <div><%= t "share.friend" %></div>
 </div>
 <div class="_item">
   <%= image_tag('mark-2-svgrepo-com.svg') %>
-  <div>Đã lưu</div>
+  <div><%= t "share.save_post" %></div>
 </div>
 <div class="_item">
   <%= image_tag('post-sign-message-svgrepo-com.svg') %>
-  <div>Bảng feed</div>
+  <div><%= t "share.feed" %></div>
 </div>
 <div class="_item">
   <%= image_tag('video-streaming-svgrepo-com.svg') %>
-  <div>watch</div>
+  <div><%= t "share.watch" %></div>
 </div>
 <div class="_item">
   <%= image_tag('list-svgrepo-com.svg') %>
-  <div>Xem tất cả</div>
+  <div><%= t "share.see_more" %></div>
 </div>
 <div class="line"></div>
 <div class="_item">
@@ -42,7 +42,7 @@
 </div>
 <div class="_item">
   <%= image_tag('list-svgrepo-com.svg') %>
-  <div>Xem tất cả các nhóm</div>
+  <div><%= t "share.see_more" %></div>
 </div>
 <div class="line"></div>
 <div class="_item">
@@ -67,5 +67,5 @@
 </div>
 <div class="_item">
   <%= image_tag('list-svgrepo-com.svg') %>
-  <div>Xem tất cả lối tắt</div>
+  <div><%= t "share.see_more" %>t</div>
 </div>

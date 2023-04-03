@@ -3,7 +3,7 @@
     <h1>Rails</h1>
   </div>
   <div class="main">
-    <input placeholder="Tìm kiếm trên Rails" class="input_search"/>
+    <input placeholder="<%= t "share.search" %>" class="input_search"/>
   </div>
   <div class="right">
     <div class="item">
@@ -18,8 +18,13 @@
           <%= image_tag("avatar-svgrepo-com.svg")%>
         </div>
         <div id="sign" class="drop_down">
-          <%= link_to "Trang cá nhân", user_path(current_user.token) %>
-          <%= link_to "Đăng xuất", users_sign_out_path, method: :delete %>
+          <%= link_to t("share.personal_page"), user_path(current_user.token) %>
+          <%= link_to t("share.log_out"), users_sign_out_path, method: :delete %>
+          <button class="show_language"><%= t "share.language" %></button>
+        </div>
+        <div id="language" class="drop_down">
+          <%= link_to t("share.english"), locale:"en" %>
+          <%= link_to t("share.vietnamese"), locale:"vi" %>
         </div>
       </div>
     </div>

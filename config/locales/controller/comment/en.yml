@@ -1,0 +1,6 @@
+en:
+  comments:
+    save:
+      comment_flag_off: "Comments have been disabled for this post."
+      be_block: "You have been blocked from commenting."
+      reached_limit: "Comments are already at the top."

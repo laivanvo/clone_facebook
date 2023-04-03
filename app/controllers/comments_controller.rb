@@ -21,10 +21,9 @@ class CommentsController < ApplicationController
     if @comment.save
       @new_comment = current_user.comments.new
       @tag_id = @pre_comment ? "#new_rep_comment_#{@pre_comment.id}" : "#new_comment_post_#{@post.id}"
-      @count_comment = @pre_comment ? @pre_comment.comments.count : @post.comments.count
       render :create
     else
-      flash[:error] = @comment.errors.messages
+      flash[:error] = @comment.errors.full_messages
       render_post_error(comment_params[:post_id])
     end
   end
@@ -34,17 +33,16 @@ class CommentsController < ApplicationController
       @new_comment = current_user.comments.new
       render :update
     else
-      flash[:error] = @comment.errors.messages
+      flash[:error] = @comment.errors.full_messages
       render_post_error(comment_params[:post_id])
     end
   end
 
   def destroy
     if @comment.destroy
-      @count_comment = @pre_comment ? @pre_comment.comments.count : @post.comments.count
       render :destroy
     else
-      flash[:error] = @comment.errors.messages
+      flash[:error] = @comment.errors.full_messages
       render_post_error(@comment.post_id)
     end
   end
@@ -56,13 +54,13 @@ class CommentsController < ApplicationController
     @pre_comment = @post.comments.find_by(id: comment_params[:comment_id])
     block = current_user.be_blocked(comment_params[:post_id])
     if !@post.comment_flag
-      flash[:error] = "bài viết đã tắt tính năng bình luận"
+      flash[:error] = t "comments.save.comment_flag_off"
+      render_post_error(comment_params[:post_id])
     elsif block
-      flash[:error] = "bạn đã bị chặn bình luận"
+      flash[:error] = t "comments.save.be_block"
+      render_post_error(comment_params[:post_id])
     elsif @pre_comment&.high?
-      flash[:error] = "bình luận đã ở mức cao nhất"
-    end
-    if flash[:error]
+      flash[:error] = t "comments.save.reached_limit"
       render_post_error(comment_params[:post_id])
     end
   end
@@ -70,7 +68,7 @@ class CommentsController < ApplicationController
   def set_comment
     @comment = current_user.comments.find_by(id: params[:id])
     if @comment.nil?
-      flash[:error] = "bạn không có quyền thao tác"
+      flash[:error] = t "error.not_permission"
       render_post_error(comment_params[:post_id])
     end
   end

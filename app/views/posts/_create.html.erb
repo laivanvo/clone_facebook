@@ -1,21 +1,21 @@
 <div class="create_post">
   <div class="show_modal_wrap">
     <%= image_tag('ava1.jpg') %>
-    <input id="open_post_modal" class="input_search" placeholder="Lại Văn ơi, bạn đang nghĩ gì thế?"/>
+    <input id="open_post_modal" class="input_search" placeholder="<%= t("share.open_form_post", user_name: current_user.name) %>"/>
   </div>
   <div class="line"></div>
   <div class="tool">
     <div class="item">
       <%= image_tag('video-svgrepo-com.svg') %>
-      Video trực tiếp
+      <%= t "share.live_video" %>
     </div>
     <div class="item">
       <%= image_tag('image-svgrepo-com.svg') %>
-      Ảnh/video
+      <%= t "share.photo/video" %>
     </div>
     <div class="item">
       <%= image_tag('emo-sunglasses-svgrepo-com.svg') %>
-      Cảm xúc/Hoạt động
+      <%= t "share.emotions/activity" %>
     </div>
   </div>
 </div>

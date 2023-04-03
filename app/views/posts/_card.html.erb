@@ -17,17 +17,15 @@
       <%= post_content(post) %>
     </div>
     <div class="action item">
-      <div class="item">
-        <%= image_tag('like-svgrepo-com.svg') %>
-        <div id="<%= "number_react_post_#{post.id}" %>"><%= post.reactions.size %></div>
+      <div class="item" id="<%= "number_react_post_#{post.id}" %>">
+        <%= t("reaction.html",img: image_tag('like-svgrepo-com.svg'), count: post.reactions.size) %>
       </div>
-      <div class="item">
-        <div id="<%= "number_comment_post_#{post.id}" %>"><%= post.comments.size %></div>
-        <div class="comment open_comment">bình luận</div>
+      <div class="item count_comment" id="<%= "number_comment_post_#{post.id}" %>">
+        <%= t("comment", count: post.comments.size) %>
       </div>
       <div class="item">
         <div class="number_share">10</div>
-        <div class="share">lượt chia sẻ</div>
+        <div class="share"><%= t "share.share" %></div>
       </div>
     </div>
     <div class="line">
@@ -36,11 +34,11 @@
       <%= render partial: "reactions/item", locals: { reaction_tag_id: "reaction_post_#{post.id}", reaction: reaction, reaction_params: { ta_duty_id: post.id, ta_duty_type: :Post } } %>
       <div class="item">
         <%= image_tag('chat-square-svgrepo-com.svg') %>
-        <div class="comment open_comment">Bình luận</div>
+        <div class="comment open_comment"><%= t "share.comment" %></div>
       </div>
       <div class="item">
         <%= image_tag('share-svgrepo-com.svg') %>
-        <div class="share">Chia sẻ</div>
+        <div class="share"><%= t "share.share" %></div>
       </div>
     </div>
   </div>
@@ -48,10 +46,10 @@
     <% if be_blocked.nil? %>
       <%= render partial: "comments/form", locals: { comment: @new_comment, post_id: post.id, comment_id: nil, file_field_id: "comment_file_post_#{post.id}" } %>
     <% else %>
-      <div class="noti">bạn đã bị chủ bài viết chặn bình luận</div>
+      <div class="noti"><%= t "comments.save.be_block" %></div>
     <% end %>
   <% else %>
-    <div class="noti">bài viết đã tắt tính năng bình luận</div>
+    <div class="noti"><%= t "comments.save.comment_flag_off" %></div>
   <% end %>
   <div id="<%= "new_comment_post_#{post.id}" %>"></div>
   <div class="comments" id="<%= "comment_post_#{post.id}" %>">
@@ -59,6 +57,8 @@
     <div id="<%= "pagi_comment_post_#{post.id}" %>">
       <%= paginate comments, params: {controller: 'comments', action: 'index', format: :js, post_id: post.id } %>
     </div>
-    <strong class="load_comment">xem tiếp</strong>
+    <% if comments.next_page.present? %>
+      <strong class="load_comment"><%= t "share.see_more" %></strong>
+    <% end %>
   </div>
 </div>

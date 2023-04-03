@@ -7,7 +7,8 @@ module UserHelper
     user.address && ("Sống tại " + user.address)
   end
 
-  def user_birthday(user)
-    user.birthday && ("Sinh nhật " + user.birthday.strftime("ngày %m tháng %d"))
+  def user_friend_birthday(user)
+    list_user = user.friend_birthday.join(", ")
+    list_user.empty? ? "" : t("share.birthday_today", list_user: list_user)
   end
 end

@@ -15,9 +15,9 @@ class PostsController < ApplicationController
     status = @is_admin ? :passed : :pending
     @post = current_user.posts.new post_params.merge(status: status)
     if @post.save
-      flash[:success] = "tạo bài viết thành công"
+      flash[:success] = t "create.success"
     else
-      flash[:error] = @post.errors.messages.first
+      flash[:error] = @post.errors.full_messages
     end
     redirect_back(fallback_location: root_path)
   end
@@ -25,18 +25,18 @@ class PostsController < ApplicationController
   def update
     status = @is_admin ? :passed : :pending
     if @post.update(post_params.merge(status: status))
-      flash[:success] = "cập nhật bài viết thành công"
+      flash[:success] = t "update.success"
     else
-      flash[:error] = @post.errors.messages.first
+      flash[:error] = @post.errors.full_messages
     end
     redirect_back(fallback_location: root_path)
   end
 
   def destroy
     if @post.destroy
-      flash[:success] = "xóa bài viết thành công"
+      flash[:success] = t "destroy.success"
     else
-      flash[:error] = @post.errors.messages.first
+      flash[:error] = @post.errors.full_messages
     end
     redirect_back(fallback_location: root_path)
   end
@@ -55,7 +55,7 @@ class PostsController < ApplicationController
       end
 
     if @post.nil?
-      flash[:error] = "bạn không có quyền thao tác"
+      flash[:error] = t ".not_permission"
       redirect_back(fallback_location: root_path)
     end
   end

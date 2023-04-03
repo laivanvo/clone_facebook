@@ -107,3 +107,5 @@ gem 'remotipart', '~> 1.2'
 
 gem "kaminari"
 gem "bootstrap-kaminari-views"
+
+gem "rails-i18n"

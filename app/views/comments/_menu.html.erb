@@ -1,0 +1,15 @@
+<div class="drop_down">
+  <% if current_user.id == comment.user_id %>
+    <button class="edit_comment"><%= t "share.update" %></button>
+    <%= button_to t("share.delete"), comment_path(comment.id), remote: true, method: :delete %>
+  <% end %>
+  <% if current_user.id == comment.post.user.id && current_user.id != comment.user_id %>
+    <div class="<%= "block_user_post_#{comment.post.id}" %>">
+      <% if user_be_blocked %>
+        <%= render partial: "block_comments/button_clicked", locals: { block: user_be_blocked } %>
+      <% else %>
+        <%= render partial: "block_comments/button_not_clicked", locals: { block: { post_id: comment.post_id, user_id: comment.user_id } } %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

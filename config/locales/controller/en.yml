@@ -1,0 +1,9 @@
+en:
+  error:
+    not_permission: "You are not authorized to act."
+  create:
+    success: "Create success."
+  update:
+    success: "Update success."
+  destroy:
+    success: "Destroy success."

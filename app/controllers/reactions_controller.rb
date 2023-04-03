@@ -4,7 +4,7 @@ class ReactionsController < ApplicationController
     if @reaction.save
       render :create
     else
-      flash[:error] = @reaction.errors.messages
+      flash[:error] = @reaction.errors.full_messages
       render_post_error
     end
   end
@@ -14,7 +14,7 @@ class ReactionsController < ApplicationController
     if @reaction.destroy
       render :destroy
     else
-      flash[:error] = @reaction.errors.messages
+      flash[:error] = @reaction.errors.full_messages
       render_post_error
     end
   end
