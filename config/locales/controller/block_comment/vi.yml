@@ -1,0 +1,4 @@
+vi:
+  block_comments:
+    create:
+      can_not_block_yourself: "Không thể chặn bình luận chính bạn."

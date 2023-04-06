@@ -1,12 +1,13 @@
 class MemberRelationsController < ApplicationController
   before_action :check_admin
   before_action :set_relation, only: [:update, :destroy]
+
   def create
     @relation = current_user.member_relations.new relation_params
     if @relation.save
       flash[:success] = "gửi yêu cầu thành công"
     else
-      flash[:error] = @relation.errors.messages.first
+      flash[:error] = @relation.errors.full_messages
     end
     redirect_back(fallback_location: root_path)
   end
@@ -15,7 +16,7 @@ class MemberRelationsController < ApplicationController
     if @relation.update(relation_params)
       flash[:success] = "thao tác thành công"
     else
-      flash[:error] = @relation.errors.messages.first
+      flash[:error] = @relation.errors.full_messages
     end
     redirect_back(fallback_location: root_path)
   end
@@ -24,7 +25,7 @@ class MemberRelationsController < ApplicationController
     if @relation.destroy
       flash[:success] = "hủy quan hệ thành công"
     else
-      flash[:error] = @relation.errors.messages.first
+      flash[:error] = @relation.errors.full_messages
     end
     redirect_back(fallback_location: root_path)
   end
@@ -36,15 +37,14 @@ class MemberRelationsController < ApplicationController
   end
 
   def set_relation
-    @relation =
-      if @is_admin
+    @relation = if @is_admin
         current_user.relation_group(params[:relation][:group_id]).group.member_relations.find_by(id: params[:id])
       else
         current_user.member_relations.find_by(id: params[:id])
       end
 
     if @relation.nil?
-      flash[:error] = 'bạn không có quyền thao tác'
+      flash[:error] = t "error.not_permission"
       redirect_back(fallback_location: root_path)
     end
   end

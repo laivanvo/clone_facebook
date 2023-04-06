@@ -1,0 +1,25 @@
+vi:
+  activerecord:
+    attributes:
+      comment:
+        comment_id: "id bình luận"
+        text: "bình luận"
+      post:
+        text: "văn bản"
+  errors:
+    messages:
+      blank: 'không được để trống'
+      wrong: "không hợp lệ"
+  comment:
+    zero: ""
+    one: "1 bình luận"
+    other: "%{count} bình luận"
+  reply:
+    zero: ""
+    one: "1 phản hồi"
+    other: "%{count} phản hồi"
+  reaction:
+    html:
+      zero: ""
+      one: "%{img} 1"
+      other: "%{img} %{count}"

@@ -20,6 +20,9 @@ $(".show_remove_relation").click(function () {
 $(".show_pending_post_tool").click(function () {
   document.getElementById("pending_post_tool").classList.toggle("show");
 });
+$(".show_language").click(function () {
+  document.getElementById("language").classList.toggle("show");
+});
 
 // Close the dropdown if the user clicks outside of it
 window.onclick = function (event) {

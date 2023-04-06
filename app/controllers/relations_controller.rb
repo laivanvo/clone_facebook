@@ -1,5 +1,6 @@
 class RelationsController < ApplicationController
   layout "relations/friends", only: [:friends]
+
   def index
   end
 
@@ -14,7 +15,7 @@ class RelationsController < ApplicationController
     if @relation.save
       flash[:success] = "gửi yêu cầu thành công"
     else
-      flash[:error] = @relation.errors.messages.first
+      flash[:error] = @relation.errors.full_messages
     end
     redirect_back(fallback_location: root_path)
   end
@@ -23,7 +24,7 @@ class RelationsController < ApplicationController
     if @relation.update(relation_params)
       flash[:success] = "kết bạn thành công"
     else
-      flash[:error] = @relation.errors.messages.first
+      flash[:error] = @relation.errors.full_messages
     end
     redirect_back(fallback_location: root_path)
   end
@@ -34,10 +35,11 @@ class RelationsController < ApplicationController
   end
 
   private
+
   def set_relation
     @relation = current_user.relations.find_by(id: params[:id])
     if @relation.nil?
-      flash[:error] = 'bạn không có quyền thao tác'
+      flash[:error] = t "error.not_permission"
       redirect_back(fallback_location: root_path)
     end
   end

@@ -10,9 +10,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+    if @user.id
+      @user.create_profile profile_params
+    end
+  end
 
   # GET /resource/edit
   # def edit
@@ -42,7 +45,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :token])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:token])
+  end
+
+  def profile_params
+    params.require(:profile).permit(:name)
   end
 
   # If you have extra params to permit, append them to the sanitizer.

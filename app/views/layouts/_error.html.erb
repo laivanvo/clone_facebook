@@ -3,8 +3,8 @@
     <% if msg.instance_of? String %>
       <%= msg %>
     <% else %>
-      <% msg.each do |key, value| %>
-        <%= key %> : <%= value[0] %>
+      <% msg.each do msg %>
+        <%= msg[0] %>
         <br>
       <% end %>
     <% end %>

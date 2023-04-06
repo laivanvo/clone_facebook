@@ -31,9 +31,9 @@ class GroupsController < ApplicationController
   def create
     @group = current_user.groups.new group_params
     if @group.save
-      flash[:success] = "tạo nhóm thành công"
+      flash[:success] = t "create.success"
     else
-      flash[:error] = @group.errors.messages.first
+      flash[:error] = @group.errors.full_messages
     end
     redirect_back(fallback_location: root_path)
   end

@@ -17,7 +17,7 @@
     <%= form_with model: post do |form| %>
       <%= form.label "Chọn chế độ của bài viết"%>
       <%= form.select :mode, Post.modes.keys.to_a %>
-      <%= form.text_area(:text, placeholder: "#{current_user.name} ơi, bạn đang nghĩ gì thế?" ) %>
+      <%= form.text_area(:text) %>
       <%= form.hidden_field :group_id, value: group_id %>
       <div class="upload">
         Thêm ảnh đại diện cho nhóm

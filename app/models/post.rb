@@ -7,6 +7,8 @@ class Post < ApplicationRecord
   has_many :reactions, as: :ta_duty
   has_many :block_comments
 
+  validates :text, presence: true
+
   delegate :name, to: :user, prefix: true
 
   paginates_per 3

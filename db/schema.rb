@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_22_021044) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_03_084210) do
   create_table "admins", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -75,7 +75,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_22_021044) do
     t.integer "user_id"
     t.string "name"
     t.string "avatar"
-    t.datetime "birthday"
+    t.date "birthday"
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -110,7 +110,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_22_021044) do
     t.string "provider"
     t.string "uid"
     t.integer "role"
-    t.string "name"
     t.string "token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

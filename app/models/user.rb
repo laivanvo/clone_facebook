@@ -12,7 +12,6 @@ class User < ApplicationRecord
   delegate :name, :avatar_url, :address, :birthday, to: :profile
 
   before_create :add_token
-  after_create :add_profile
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i[facebook google_oauth2]
@@ -27,11 +26,14 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.name = auth.info.name
-      user.password = Devise.friendly_token[0, 20]
+    user = User.find_or_create_by(provider: auth.provider, uid: auth.uid) do |new_user|
+      new_user.email = auth.info.email
+      new_user.password = Devise.friendly_token[0, 20]
     end
+    if user.profile.nil?
+      user.create_profile name: auth.info.name
+    end
+    user
   end
 
   def joined_groups
@@ -79,15 +81,15 @@ class User < ApplicationRecord
     self.token = SecureRandom.urlsafe_base64(nil, false)
   end
 
-  def add_profile
-    self.create_profile name: self.name
-  end
-
   def reaction(ta_duty_id, ta_duty_type)
     self.reactions.find_by(ta_duty_id: ta_duty_id, ta_duty_type: ta_duty_type)
   end
 
   def be_blocked(post_id)
     self.block_comments.where(post_id: post_id).first
+  end
+
+  def friend_birthday
+    Profile.where(birthday: Date.today, user_id: friends.pluck(:id)).pluck(:name)
   end
 end

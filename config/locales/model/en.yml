@@ -1,0 +1,24 @@
+en:
+  activerecord:
+    attributes:
+      comment:
+        comment_id: "comment_id"
+        text: "comment"
+      post:
+        text: "text"
+  errors:
+    messages:
+      wrong: "illegal"
+  comment:
+    zero: ""
+    one: "1 comment"
+    other: "%{count} comments"
+  reply:
+    zero: ""
+    one: "1 reply"
+    other: "%{count} relies"
+  reaction:
+    html:
+      zero: ""
+      one: "%{img} 1"
+      other: "%{img} %{count}"

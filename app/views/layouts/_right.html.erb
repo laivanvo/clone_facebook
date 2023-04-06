@@ -1,16 +1,12 @@
-<h2>Sinh nhật</h2>
+<h2><%= t ".birthday" %></h2>
 <div class="_item">
   <%= image_tag('gift-svgrepo-com.svg') %>
   <div>
-    Hôm nay là sinh nhật của
-    <strong>Nguyễn Kiều Hoa</strong>
-    và
-    <strong>Hai Thái</strong>
-    .
+    <%= user_friend_birthday(current_user) %>
   </div>
 </div>
 <div class="line"></div>
-<div class="_item"><h2>Người liên hệ</h2></div>
+<div class="_item"><h2><%= t ".contact" %></h2></div>
 <div class="_item tool">
     <%= image_tag('video-svgrepo-com.svg') %>
     <%= image_tag('icons8-search.svg') %>

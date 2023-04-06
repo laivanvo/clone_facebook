@@ -6,6 +6,9 @@ class Comment < ApplicationRecord
   has_many :comments
   has_many :reactions, as: :ta_duty
 
+  validates :text, presence: true
+  validate :wrong_reply
+
   delegate :name, to: :user, prefix: true
   delegate :comment_flag, to: :post, prefix: true
 
@@ -21,5 +24,9 @@ class Comment < ApplicationRecord
 
     self.level = Comment.levels.key(Comment.levels[pre_comment.level] + 1)
     self.post_id = pre_comment.post.id
+  end
+
+  def wrong_reply
+    errors.add(:comment_id, :wrong) if (comment_id && comment_id == id)
   end
 end
