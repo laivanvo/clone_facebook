@@ -1,0 +1,7 @@
+vi:
+  notis:
+    type:
+      comment_post:
+        html: "<div><strong>%{user_name}</strong> đã bình luận vào bài viết của bạn.</div>"
+      rep_comment:
+        html: "<div><strong>%{user_name}</strong> đã phản hồi bình luận của bạn.</div>"

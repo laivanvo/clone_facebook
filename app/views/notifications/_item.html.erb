@@ -1,0 +1,11 @@
+<%= link_to notification_redirect(noti), class: "noti #{"not_view" unless noti.viewed}", id: "noti_#{noti.id}" do %>
+  <%= user_avatar(noti.ta_duty.user) %>
+  <div>
+    <% if noti.viewed %>
+      <%= t("notis.type.#{Notification.noti_types.key(Notification.noti_types[noti.noti_type])}.html", user_name: noti.ta_duty.user_name) %>
+    <% else %>
+      <%= button_to t("notis.type.#{Notification.noti_types.key(Notification.noti_types[noti.noti_type])}.html", user_name: noti.ta_duty.user_name), view_notification_path(noti.id), method: :patch %>
+    <% end %>
+    <div class="created_at"><%= created_at(noti) %></div>
+  </div>
+<% end %>

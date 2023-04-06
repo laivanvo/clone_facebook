@@ -1,3 +1,4 @@
+<% notis = current_user.notifications.page.per(5) %>
 <div class="header_area">
   <div class="left">
     <h1>Rails</h1>
@@ -10,7 +11,19 @@
       <%= image_tag("message-square-dots-svgrepo-com.svg") %>
     </div>
     <div class="item">
-      <%= image_tag("bell-filled-svgrepo-com.svg") %>
+      <div>
+        <div class="show_noti">
+          <%= image_tag("bell-filled-svgrepo-com.svg") %>
+        </div>
+        <div id="noti" class="drop_down">
+          <%= link_to t("share.see_all"), notifications_path %>
+          <%= button_to t("share.read_all"), view_all_notifications_path, method: :patch, remote: true %>
+          <div class="notis"><%= render partial: "notifications/item", collection: notis, as: :noti %></div>
+          <div class="pagination_noti">
+            <%= paginate notis, params: {controller: 'notifications', action: 'index', format: :js } %>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="item">
       <div>
@@ -20,7 +33,7 @@
         <div id="sign" class="drop_down">
           <%= link_to t("share.personal_page"), user_path(current_user.token) %>
           <%= link_to t("share.log_out"), users_sign_out_path, method: :delete %>
-          <button class="show_language"><%= t "share.language" %></button>
+          <a class="show_language"><%= t "share.language" %></a>
         </div>
         <div id="language" class="drop_down">
           <%= link_to t("share.english"), locale:"en" %>

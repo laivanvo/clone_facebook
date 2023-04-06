@@ -1,12 +1,13 @@
 <% be_blocked = current_user.be_blocked(post.id) %>
+<% target_low_comment = @current_comment&.low_comment %> <%# showing comment when coming from notification %>
+<% comments = post.comments.where.not(id: target_low_comment&.id).low.includes(:reactions).page %>
 <% reaction = current_user.reaction(post.id, :Post) %>
-<% comments = post.comments.low.includes(:reactions).page %>
 <div class="post_card">
   <div id="<%= "post_error_#{post.id}" %>"></div>
   <div>
     <div class="header item">
       <%= render layout: "users/item", locals: { user: post.user } do %>
-        <div class="mode"><%= post_created_at(post) %></div>
+        <div class="mode"><%= created_at(post) %></div>
       <% end %>
       <%= render partial: "posts/menu", locals: { post: post } %>
     </div>
@@ -52,13 +53,20 @@
     <div class="noti"><%= t "comments.save.comment_flag_off" %></div>
   <% end %>
   <div id="<%= "new_comment_post_#{post.id}" %>"></div>
+  <% if @current_comment %>
+    <div class="current_comment">
+      <%= render layout: "comments/current", locals: { comment: @current_comment.parent_comment, except_comment_id: @current_comment.id } do %>
+        <%= render partial: "comments/card", locals: { comment: @current_comment, except_comment_id: nil } %>
+      <% end %>
+    </div>
+  <% end %>
   <div class="comments" id="<%= "comment_post_#{post.id}" %>">
-    <div class="items"><%= render partial: "comments/card", collection: comments, as: :comment %></div>
+    <div class="items"><%= render partial: "comments/card", collection: comments, as: :comment, locals: { except_comment_id: nil } %></div>
     <div id="<%= "pagi_comment_post_#{post.id}" %>">
       <%= paginate comments, params: {controller: 'comments', action: 'index', format: :js, post_id: post.id } %>
     </div>
     <% if comments.next_page.present? %>
-      <strong class="load_comment"><%= t "share.see_more" %></strong>
+      <strong class="load_comment" id="<%= "_comment_post_#{post.id}" %>"><%= t "share.see_more" %></strong>
     <% end %>
   </div>
 </div>

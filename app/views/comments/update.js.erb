@@ -1,5 +1,5 @@
 var tag = $("<%= escape_javascript("#comment_card_#{@comment.id}") %>")
-var html = $("<%= escape_javascript(render(partial: "comments/card", locals: { comment: @comment, be_blocked: current_user.be_blocked(@comment.post_id) })) %>")
+var html = $("<%= escape_javascript(render(partial: "comments/card", locals: { comment: @comment, except_comment_id: nil })) %>")
 tag.replaceWith(html);
 $(".write_comment").off("click");
 $(".menu_comment").off("click");

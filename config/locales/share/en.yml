@@ -41,3 +41,5 @@ en:
     log_out: "Log out"
     reply: "Reply"
     birthday_today: "Today is birthday of "
+    read_all: "Mark all as read."
+    deleted_comment: "Comment has been deleted."

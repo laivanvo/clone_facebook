@@ -1,41 +1,49 @@
 <% user_be_blocked = comment.user.be_blocked(comment.post_id) %>
 <% be_blocked = current_user.be_blocked(comment.post_id) %>
 <% reaction = current_user.reaction(comment.id, :Comment) %>
-<% comments = comment.comments.page %>
+<% comments = comment.comments.where.not(id: except_comment_id).page %>
 <div class="comment_card" id="<%= "comment_card_#{comment.id}" %>">
-  <div class="menu menu_comment">
-    <%= image_tag('dot-menu-more-2-svgrepo-com.svg') %>
-    <div>
-      <%= image_tag('like-svgrepo-com.svg') %>
-      <div id="<%= "number_react_comment_#{comment.id}" %>"><%= comment.reactions.size %></div>
+  <% if comment.deleted_at.nil? %>
+    <div class="menu menu_comment">
+      <%= image_tag('dot-menu-more-2-svgrepo-com.svg') %>
+      <div id="<%= "number_react_comment_#{comment.id}" %>">
+        <%= t("reaction.html",img: image_tag('like-svgrepo-com.svg'), count: comment.reactions.size) %>
+      </div>
     </div>
-  </div>
+  <% end %>
   <div class="_item text">
     <%= image_tag('ava1.jpg') %>
     <div>
       <strong><%= comment.user_name %></strong>
-      <div><%= comment.text %></div>
+      <% if comment.deleted_at.nil? %>
+        <div><%= comment.text %></div>
+      <% else %>
+        <div class="opa-05">Bình luận đã bị xóa</div>
+      <% end %>
     </div>
   </div>
   <div class="edit_comment_form">
     <%= render partial: "comments/form", locals: { comment: comment, post_id: comment.post_id, comment_id: comment.comment_id, file_field_id: "update_comment_file_#{comment.id}" } %>
   </div>
-  <%= render partial: "comments/menu", locals: { comment: comment } %>
+  <%= render partial: "comments/menu", locals: { comment: comment, user_be_blocked: user_be_blocked } %>
   <div class="file"><%= comment_file(comment) %></div>
-  <div class="tool">
-    <%= render partial: "reactions/item", locals: { reaction_tag_id: "reaction_comment_#{comment.id}", reaction: reaction, reaction_params: { ta_duty_id: comment.id, ta_duty_type: :Comment } } %>
-    <% if !comment.high? && comment.post_comment_flag && be_blocked.nil? %>
-      <strong class="write_comment"><%= t "share.reply" %></strong>
-    <% end %>
-  </div>
+  <% if comment.deleted_at.nil? %>
+    <div class="tool">
+      <%= render partial: "reactions/item", locals: { reaction_tag_id: "reaction_comment_#{comment.id}", reaction: reaction, reaction_params: { ta_duty_id: comment.id, ta_duty_type: :Comment } } %>
+      <% if !comment.high? && comment.post_comment_flag && be_blocked.nil? %>
+        <strong class="write_comment"><%= t "share.reply" %></strong>
+      <% end %>
+    </div>
+  <% end %>
   <strong class="open_rep" id="<%= "new_rep_comment_#{comment.id}" %>"><%= t("reply", count: comments.total_count) %></strong>
   <div class="replies" id="<%= "rep_comment_#{comment.id}" %>">
-    <%= render partial: "comments/card", collection: comments, as: :comment %>
+    <div class="items"><%= render partial: "comments/card", collection: comments, as: :comment, locals: { except_comment_id: nil } %></div>
     <div id="<%= "pagi_rep_comment_#{comment.id}" %>"><%= paginate comments, params: {controller: 'comments', action: 'index', format: :js, comment_id: comment.id } %></div>
-    <% if comments.next_page.present? %>
-      <strong class="load_comment"><%= t "share.see_more" %></strong>
+    <% if comments.next_page.present? && comment.deleted_at.nil? %>
+      <strong class="load_comment" id="<%= "_rep_comment_#{comment.id}" %>"><%= t "share.see_more" %></strong>
     <% end %>
   </div>
   <%= render partial: "comments/form", locals: { comment: @new_comment, post_id: comment.post_id, comment_id: comment.id, file_field_id: "rep_comment_file_#{comment.id}" } %>
   <div id="<%= "new_rep_comment_#{comment.id}" %>"></div>
+  <%= yield if block_given? %>
 </div>

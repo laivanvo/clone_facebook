@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
   before_action :check_admin, only: [:update, :destroy]
   before_action :set_post, only: [:update, :destroy]
+  before_action :set_post_show, only: [:show]
+  layout "posts/show", only: [:show]
 
   def index
     group = Group.find_by(id: params[:group_id])
@@ -9,6 +11,11 @@ class PostsController < ApplicationController
     else
       @posts = group.posts.passed.includes(:comments, :reactions).page(params[:page])
     end
+  end
+
+  def show
+    @new_comment = current_user.comments.new
+    @current_comment = Comment.find_by(id: params[:current_comment_id])
   end
 
   def create
@@ -57,6 +64,13 @@ class PostsController < ApplicationController
     if @post.nil?
       flash[:error] = t ".not_permission"
       redirect_back(fallback_location: root_path)
+    end
+  end
+
+  def set_post_show
+    @post = Post.find_by(id: params[:id])
+    if @post.nil? || !@post.readable_users.include?(current_user.id)
+      return redirect_to not_permission_path
     end
   end
 
