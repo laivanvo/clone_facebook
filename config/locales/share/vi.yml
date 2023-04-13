@@ -44,3 +44,8 @@ vi:
     birthday_today: "hôm nay là sinh nhật của %{list_user}"
     read_all: "Đánh dấu tất cả đã đọc."
     deleted_comment: "Bình luận đã bị xóa."
+    recommend_user: "Gợi ý người dùng."
+    home_post: "Bài viết của bản thân hoặc bạn bè."
+    recommend_post: "Bài viết được đề xuất."
+    joined_group: "Nhóm đã tham gia."
+    recommend_group: "Nhóm được đề xuất."

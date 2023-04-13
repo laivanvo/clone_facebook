@@ -111,3 +111,5 @@ gem "bootstrap-kaminari-views"
 gem "rails-i18n"
 
 gem "paranoia", "~> 2.2"
+
+gem "ransack"

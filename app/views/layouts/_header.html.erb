@@ -4,7 +4,9 @@
     <h1>Rails</h1>
   </div>
   <div class="main">
-    <input placeholder="<%= t "share.search" %>" class="input_search"/>
+    <%= form_with url: search_index_path, method: :get, class: "form_search" do |f| %>
+      <%= f.text_field :question, { placeholder: t("share.search"), class: "input_search" } %>
+    <% end %>
   </div>
   <div class="right">
     <div class="item">

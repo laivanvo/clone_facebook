@@ -17,6 +17,14 @@ class Post < ApplicationRecord
 
   mount_uploader :content, PostFileUploader
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["comment_flag", "content", "created_at", "group_id", "id", "mode", "status", "text", "updated_at", "user_id"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["block_comments", "comments", "group", "notifications", "reactions", "user"]
+  end
+
   def readable_users
     if only_me?
       [user_id]

@@ -43,3 +43,8 @@ en:
     birthday_today: "Today is birthday of "
     read_all: "Mark all as read."
     deleted_comment: "Comment has been deleted."
+    recommend_user: "Recommend user."
+    home_post: "Posts by myself or friend."
+    recommend_post: "Recommend post."
+    joined_group: "Joined group."
+    recommend_group: "Recommend group."

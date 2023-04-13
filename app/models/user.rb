@@ -37,6 +37,14 @@ class User < ApplicationRecord
     user
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["email"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["block_comments", "comments", "groups", "member_relations", "notifications", "posts", "profile", "reactions", "receivers", "senders"]
+  end
+
   def joined_groups
     Group.where(id: self.member_relations.joined.pluck(:user_id))
   end
@@ -46,8 +54,22 @@ class User < ApplicationRecord
     User.where(id: friend_ids).order(created_at: :desc)
   end
 
+  def recommend_users
+    User.where.not(id: friends.pluck(:id).push(id))
+  end
+
   def home_posts
-    Post.where(user_id: (self.friends.pluck(:id).push(self.id)), group_id: nil).order(created_at: :desc)
+    Post.where(user_id: id)
+        .or(Post.where(user_id: friends.pluck(:id), group_id: nil).not_only_me)
+        .or(Post.where(group_id: joined_groups.pluck(:group_id)).passed)
+  end
+
+  def recommend_posts
+    Post.where(user_id: recommend_users.pluck(:id), group_id: nil)
+  end
+
+  def group_posts
+    Post.where(group_id: joined_groups.pluck(:group_id)).passed
   end
 
   def relation(check_user_id)
@@ -63,10 +85,6 @@ class User < ApplicationRecord
 
   def recommend_groups
     Group.where.not(id: self.member_relations.pluck(:group_id))
-  end
-
-  def recommend_users
-    User.where.not(id: self.sender_ids.concat(self.receiver_ids))
   end
 
   def friend_groups

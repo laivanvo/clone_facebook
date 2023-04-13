@@ -1,0 +1,45 @@
+<div class="_item">
+  <h1><%= t "search_result" %></h1>
+</div>
+<%= link_to search_index_path(question: params[:question]) do %>
+  <div class="_item">
+    <%= image_tag('post-sign-message-svgrepo-com.svg') %>
+    <div><%= t "share.see_all" %></div>
+  </div>
+<% end %>
+<%= link_to friend_search_index_path(question: params[:question]) do %>
+  <div class="_item" class="friend_url">
+    <%= image_tag('friend-3-svgrepo-com.svg') %>
+    <div><%= t "share.friend" %></div>
+  </div>
+<% end %>
+<%= link_to recommend_user_search_index_path(question: params[:question]) do %>
+  <div class="_item" class="friend_url">
+    <%= image_tag('friend-3-svgrepo-com.svg') %>
+    <div><%= t "share.recommend_user" %></div>
+  </div>
+<% end %>
+<%= link_to home_post_search_index_path(question: params[:question]) do %>
+  <div class="_item">
+    <%= image_tag('post-sign-message-svgrepo-com.svg') %>
+    <div><%= t "share.home_post" %></div>
+  </div>
+<% end %>
+<%= link_to recommend_post_search_index_path(question: params[:question]) do %>
+  <div class="_item">
+    <%= image_tag('post-sign-message-svgrepo-com.svg') %>
+    <div><%= t "share.recommend_post" %></div>
+  </div>
+<% end %>
+<%= link_to joined_group_search_index_path(question: params[:question]) do %>
+  <div class="_item">
+    <%= image_tag('post-sign-message-svgrepo-com.svg') %>
+    <div><%= t "share.joined_group" %></div>
+  </div>
+<% end %>
+<%= link_to recommend_group_search_index_path(question: params[:question]) do %>
+  <div class="_item">
+    <%= image_tag('post-sign-message-svgrepo-com.svg') %>
+    <div><%= t "share.recommend_group" %></div>
+  </div>
+<% end %>
