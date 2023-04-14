@@ -9,19 +9,28 @@ $(".search").keyup(function (e) {
 });
 
 $(".show_sign").click(function () {
+  $(".drop_down").removeClass("show");
   document.getElementById("sign").classList.toggle("show");
 });
 $(".show_response_relation").click(function () {
+  $(".drop_down").removeClass("show");
   document.getElementById("response_relation").classList.toggle("show");
 });
 $(".show_remove_relation").click(function () {
+  $(".drop_down").removeClass("show");
   document.getElementById("remove_relation").classList.toggle("show");
 });
 $(".show_pending_post_tool").click(function () {
+  $(".drop_down").removeClass("show");
   document.getElementById("pending_post_tool").classList.toggle("show");
 });
 $(".show_language").click(function () {
+  $(".drop_down").removeClass("show");
   document.getElementById("language").classList.toggle("show");
+});
+$(".show_noti").click(function () {
+  $(".drop_down").removeClass("show");
+  document.getElementById("noti").classList.toggle("show");
 });
 
 // Close the dropdown if the user clicks outside of it
@@ -177,26 +186,43 @@ if ($(".pagination_post").length && $("#posts").length) {
   });
 }
 
+if ($(".pagination_noti").length && $("#noti").length) {
+  $("#noti").on("scroll", function () {
+    var more_notis_url = $(".pagination_noti .next_page a").attr("href");
+    if (more_notis_url) {
+      more_notis_url = more_notis_url;
+    } else {
+      more_notis_url = $(".pagination_noti .next a").attr("href");
+    }
+    if (
+      more_notis_url &&
+      $("#noti").scrollTop() > $(document).height() - $(window).height() - 60
+    ) {
+      $(".pagination_noti")
+        .find(".pagination")
+        .html(
+          '<img src="/assets/ajax-loader.gif" alt="Loading..." title="Loading..." />'
+        );
+      $.getScript(more_notis_url);
+    }
+  });
+}
+
 $(".load_comment").click(function () {
-  var more_comments_url = $(this)
-    .parent()
+  var more_comments_url = $("#pagi" + this.id)
     .children(".pagination")
     .find(".next_page a")
     .attr("href");
   if (more_comments_url) {
     more_comments_url = more_comments_url;
   } else {
-    more_comments_url = $(this)
-      .parent()
-      .children()
+    more_comments_url = $("#pagi" + this.id)
       .children(".pagination")
       .find(".next a")
       .attr("href");
   }
   if (more_comments_url) {
-    $(this)
-      .parent()
-      .children()
+    $("#pagi" + this.id)
       .children(".pagination")
       .html(
         '<img src="/assets/ajax-loader.gif" alt="Loading..." title="Loading..." />'

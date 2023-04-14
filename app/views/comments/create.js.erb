@@ -1,4 +1,4 @@
-$("<%= escape_javascript(render(partial: "comments/card", locals: { comment: @comment, be_blocked: current_user.be_blocked(@comment.post_id) })) %>").insertAfter("<%= escape_javascript(@tag_id) %>")
+$("<%= escape_javascript(render(partial: "comments/card", locals: { comment: @comment, except_comment_id: nil })) %>").insertAfter("<%= escape_javascript(@tag_id) %>")
 $("<%= escape_javascript("#number_comment_post_#{@comment.post_id}") %>").html("<%= t("comment", count: @comment.post.comments.count) %>")
 $(".write_comment").off("click");
 $(".menu_comment").off("click");

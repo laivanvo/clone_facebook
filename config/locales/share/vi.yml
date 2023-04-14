@@ -42,3 +42,5 @@ vi:
     log_out: "Đăng xuất"
     reply: "Phản hồi"
     birthday_today: "hôm nay là sinh nhật của %{list_user}"
+    read_all: "Đánh dấu tất cả đã đọc."
+    deleted_comment: "Bình luận đã bị xóa."

@@ -7,12 +7,13 @@ class CommentsController < ApplicationController
   def index
     post = Post.find_by(id: params[:post_id])
     comment = Comment.find_by(id: params[:comment_id])
-    if post
-      @comments = post.comments.low.page(params[:page])
-      @tag_id = "comment_post_#{post.id}"
-    else
+    @new_comment = current_user.comments.new
+    if comment
       @comments = comment.comments.page(params[:page])
       @tag_id = "rep_comment_#{comment.id}"
+    else
+      @comments = post.comments.where.not(id: params[:_comment_id]).low.page(params[:page])
+      @tag_id = "comment_post_#{post.id}"
     end
   end
 

@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :reactions
   has_many :comments
   has_many :block_comments
+  has_many :notifications
 
   delegate :name, :avatar_url, :address, :birthday, to: :profile
 

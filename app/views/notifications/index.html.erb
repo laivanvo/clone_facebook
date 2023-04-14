@@ -1,0 +1,4 @@
+<div class="notis">
+  <% notis = current_user.notifications %>
+  <%= render partial: "notifications/item", collection: notis, as: :noti %>
+</div>

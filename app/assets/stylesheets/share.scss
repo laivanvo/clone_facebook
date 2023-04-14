@@ -57,6 +57,9 @@ body {
     width: 90% !important;
     margin-left: 5% !important;
   }
+  .main_post {
+    height: 100vh !important;
+  }
   ._item {
     @include item;
     background-color: transparent;
@@ -254,6 +257,58 @@ body {
     .items {
       display: block !important;
       height: auto !important;
+    }
+  }
+  .drop_down {
+    button {
+      padding: 0;
+    }
+  }
+  .noti {
+    img {
+      width: 50px !important;
+      height: 50px !important;
+      border-radius: 50%;
+    }
+    button {
+      all: unset;
+    }
+    margin-bottom: 10px;
+  }
+  .created_at {
+    opacity: 0.7;
+  }
+  #noti {
+    overflow: scroll;
+    overflow-x: hidden;
+    height:400px;
+  }
+  ::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+  }
+  /* Optional: show position indicator in red */
+  ::-webkit-scrollbar-thumb {
+      background: #FF0000;
+  }
+  .notis {
+    background-color: #fff;
+    a {
+      &:hover {
+        background-color: aliceblue;
+      }
+    }
+    padding: 5px;
+  }
+  .not_view {
+    background-color: aliceblue !important;
+  }
+  .current_comment {
+    .children_card {
+      padding-left: 30px;
+    }
+    .card_wrap {
+      padding-left: 30px;
     }
   }
 }

@@ -1,0 +1,7 @@
+$('#noti').append('<%= j render partial: "notifications/item", collection: @notis, as: :noti %>');
+<% if @notis.next_page %>
+  $('.pagination_noti').find('.pagination').replaceWith('<%= j paginate @notis %>');
+<% else %>
+  $("#noti").off('scroll');
+  $('.pagination_noti').find('.pagination').remove();
+<% end %>

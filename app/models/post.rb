@@ -3,15 +3,31 @@ class Post < ApplicationRecord
   enum status: %i[pending passed], _default: :pending
 
   belongs_to :user
+  belongs_to :group
   has_many :comments
   has_many :reactions, as: :ta_duty
+  has_many :notifications, as: :ta_duty
   has_many :block_comments
 
   validates :text, presence: true
 
-  delegate :name, to: :user, prefix: true
+  delegate :name, :avatar_url, :address, :birthday, to: :user, prefix: true
 
   paginates_per 3
 
   mount_uploader :content, PostFileUploader
+
+  def readable_users
+    if only_me?
+      [user_id]
+    elsif only_friend?
+      user.friends.pluck(:id).push(user_id)
+    elsif group_id && pending?
+      group.admins.pluck(:user_id).push(user_id)
+    elsif group_id
+      group.joiners.pluck(:user_id)
+    else
+      User.pluck(:id)
+    end
+  end
 end

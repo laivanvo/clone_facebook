@@ -1,0 +1,9 @@
+<% if comment %>
+  <%= render layout: "comments/current", locals: { comment: comment.parent_comment, except_comment_id: comment.id } do %>
+    <%= render layout: "comments/card", locals: { comment: comment, except_comment_id: except_comment_id } do %>
+      <%= yield %>
+    <% end %>
+  <% end %>
+<% else %>
+  <%= yield %>
+<% end %>

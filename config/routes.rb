@@ -8,6 +8,14 @@ Rails.application.routes.draw do
   resources :reactions
   resources :comments
   resources :block_comments
+  resources :notifications do
+    member do
+      patch "view"
+    end
+    collection do
+      patch "view_all"
+    end
+  end
   resources :groups do
     member do
       get "members"

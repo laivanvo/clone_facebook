@@ -1,4 +1,4 @@
-$("<%= j "##{@tag_id}" %>").children(".items").append("<%= j render partial: "comments/card", collection: @comments, as: :comment %>");
+$("<%= j "##{@tag_id}" %>").children(".items").append("<%= j render partial: "comments/card", collection: @comments, as: :comment, locals: { except_comment_id: nil } %>");
 <% if @comments.next_page %>
   $("<%= j "#pagi_#{@tag_id}" %>").children(".pagination").replaceWith("<%= j paginate @comments %>");
   $(window).scrollTop($("<%= j "##{@tag_id}" %>").children(".load_comment").position().top);
@@ -9,7 +9,9 @@ $("<%= j "##{@tag_id}" %>").children(".items").append("<%= j render partial: "co
 $(".write_comment").off("click");
 $(".menu_comment").off("click");
 $(".edit_comment").off("click");
+$(".open_rep").off("click");
 $(".drop_down").find("button").off("click");
+$(".load_comment").off("click");
 $(".write_comment").click(function () {
   $(this).parent().parent().children("form").css("display", "block");
 });
@@ -30,3 +32,29 @@ $(".drop_down")
   .click(function () {
     $(this).parent().parent().find(".drop_down")[0].classList.toggle("show");
   });
+$(".open_rep").click(function () {
+  $(this).parent().children(".replies").css("display", "block");
+  $(this).remove();
+});
+$(".load_comment").click(function () {
+  var more_comments_url = $("#pagi" + this.id)
+    .children(".pagination")
+    .find(".next_page a")
+    .attr("href");
+  if (more_comments_url) {
+    more_comments_url = more_comments_url;
+  } else {
+    more_comments_url = $("#pagi" + this.id)
+      .children(".pagination")
+      .find(".next a")
+      .attr("href");
+  }
+  if (more_comments_url) {
+    $("#pagi" + this.id)
+      .children(".pagination")
+      .html(
+        '<img src="/assets/ajax-loader.gif" alt="Loading..." title="Loading..." />'
+      );
+    $.getScript(more_comments_url);
+  }
+});
