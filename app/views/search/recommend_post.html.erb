@@ -1,0 +1,8 @@
+<div class="items">
+  <% if @recommend_posts.present? %>
+    <strong><%= t "recommend_posts" %></strong>
+    <%= render partial: "posts/card", collection: @recommend_posts, as: :post %>
+  <% else %>
+    <%= render partial: "search/not_found" %>
+  <% end %>
+</div>

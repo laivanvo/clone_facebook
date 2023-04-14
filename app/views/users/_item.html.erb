@@ -1,8 +1,6 @@
-<div class="item">
+<div class="item user_item">
   <%= link_to user_path(user.token) do %>
-    <div>
-      <%= user_avatar(user) %>
-    </div>
+    <div class="user_avatar"><%= user_avatar(user) %></div>
   <% end %>
   <div>
     <%= link_to user_path(user.token) do %>

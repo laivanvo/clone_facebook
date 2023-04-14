@@ -1,0 +1,8 @@
+<div class="items">
+  <% if @joined_groups.present? %>
+    <strong><%= t "joined_groups" %></strong>
+    <%= render partial: "groups/card", collection: @joined_groups, as: :group %>
+  <% else %>
+    <%= render partial: "search/not_found" %>
+  <% end %>
+</div>

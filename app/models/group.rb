@@ -9,6 +9,10 @@ class Group < ApplicationRecord
 
   mount_uploader :avatar, GroupFileUploader
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["avatar", "created_at", "id", "name", "public", "updated_at", "user_id"]
+  end
+
   def add_admin
     self.member_relations.create user_id: self.user_id, relation_type: :admin
   end

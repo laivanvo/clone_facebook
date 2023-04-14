@@ -1,0 +1,8 @@
+<div class="items">
+  <% if @recommend_groups.present? %>
+    <strong><%= t "recommend_groups" %></strong>
+    <%= render partial: "groups/card", collection: @recommend_groups, as: :group %>
+  <% else %>
+    <%= render partial: "search/not_found" %>
+  <% end %>
+</div>

@@ -16,6 +16,16 @@ Rails.application.routes.draw do
       patch "view_all"
     end
   end
+  resources :search do
+    collection do
+      get "friend"
+      get "recommend_user"
+      get "home_post"
+      get "recommend_post"
+      get "joined_group"
+      get "recommend_group"
+    end
+  end
   resources :groups do
     member do
       get "members"

@@ -1,0 +1,8 @@
+<div class="items">
+  <% if @home_posts.present? %>
+    <strong><%= t "home_posts" %></strong>
+    <%= render partial: "posts/card", collection: @home_posts, as: :post %>
+  <% else %>
+    <%= render partial: "search/not_found" %>
+  <% end %>
+</div>

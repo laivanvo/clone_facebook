@@ -1,0 +1,68 @@
+<div class="search_wrap">
+  <div class="items">
+    <strong><%= t "share.friend" %></strong>
+    <% if @friends.present? %>
+      <%= render partial: "users/card", collection: @friends, as: :user %>
+      <% if @friends.next_page.present? %>
+        <%= link_to t("see_all"), friend_search_index_path(question: params[:question]) %>
+      <% end %>
+    <% else %>
+      <%= render partial: "search/not_found" %>
+    <% end %>
+  </div>
+  <div class="items">
+    <strong><%= t "share.recommend_user" %></strong>
+    <% if @recommend_users.present? %>
+      <%= render partial: "users/card", collection: @recommend_users, as: :user %>
+      <% if @recommend_users.next_page.present? %>
+        <%= link_to t("see_all"), recommend_user_search_index_path(question: params[:question]) %>
+      <% end %>
+    <% else %>
+      <%= render partial: "search/not_found" %>
+    <% end %>
+  </div>
+  <div class="items">
+    <strong><%= t "share.home_post" %></strong>
+    <% if @home_posts.present? %>
+      <%= render partial: "posts/card", collection: @home_posts, as: :post %>
+      <% if @home_posts.next_page.present? %>
+        <%= link_to t("see_all"), home_post_search_index_path(question: params[:question]) %>
+      <% end %>
+    <% else %>
+      <%= render partial: "search/not_found" %>
+    <% end %>
+  </div>
+  <div class="items">
+    <strong><%= t "share.recommend_post" %></strong>
+    <% if @recommend_posts.present? %>
+      <%= render partial: "posts/card", collection: @recommend_posts, as: :post %>
+      <% if @recommend_posts.next_page.present? %>
+        <%= link_to t("see_all"), recommend_post_search_index_path(question: params[:question]) %>
+      <% end %>
+    <% else %>
+      <%= render partial: "search/not_found" %>
+    <% end %>
+  </div>
+  <div class="items">
+    <strong><%= t "share.joined_group" %></strong>
+    <% if @joined_groups.present? %>
+      <%= render partial: "groups/card", collection: @joined_groups, as: :group %>
+      <% if @joined_groups.next_page.present? %>
+        <%= link_to t("see_all"), joined_group_search_index_path(question: params[:question]) %>
+      <% end %>
+    <% else %>
+      <%= render partial: "search/not_found" %>
+    <% end %>
+  </div>
+  <div class="items">
+    <strong><%= t "share.recommend_group" %></strong>
+    <% if @recommend_groups.present? %>
+      <%= render partial: "groups/card", collection: @recommend_groups, as: :group %>
+      <% if @recommend_groups.next_page.present? %>
+        <%= link_to t("see_all"), recommend_group_search_index_path(question: params[:question]) %>
+      <% end %>
+    <% else %>
+      <%= render partial: "search/not_found" %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<div class="items">
+  <% if @friends.present? %>
+    <strong><%= t "share.friend" %></strong>
+    <%= render partial: "users/card", collection: @friends, as: :user %>
+  <% else %>
+    <%= render partial: "search/not_found" %>
+  <% end %>
+</div>

@@ -6,7 +6,11 @@ body {
     background-color: black;
     margin: 10px;
   }
-  h1, h2, h3, h4, h5 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
     margin: 0;
   }
   .input_search {
@@ -99,7 +103,8 @@ body {
   .show {
     display: block;
   }
-  a:link, a:visited {
+  a:link,
+  a:visited {
     text-decoration: none;
     color: #000;
     display: flex;
@@ -122,7 +127,7 @@ body {
       right: 30px;
       cursor: pointer;
     }
-    input[type='file'] {
+    input[type="file"] {
       display: none;
     }
   }
@@ -177,7 +182,8 @@ body {
     }
     .tool {
       display: flex;
-      .reaction, .not_reaction {
+      .reaction,
+      .not_reaction {
         form {
           display: block;
           margin-left: 0;
@@ -196,7 +202,8 @@ body {
     }
     .header {
       @include flex_space_between;
-      .item, .menu_post {
+      .item,
+      .menu_post {
         @include flex;
         img {
           @include img_icon;
@@ -239,9 +246,12 @@ body {
       opacity: 0.7;
     }
   }
+  .form_search {
+    width: 100%;
+  }
   .input_search {
     &::after {
-      content: url('video-streaming-svgrepo-com.svg');
+      content: url("video-streaming-svgrepo-com.svg");
       display: inline-block;
       width: 12px;
       height: 12px;
@@ -250,7 +260,8 @@ body {
   .pagination {
     display: none;
   }
-  .comments, .replies {
+  .comments,
+  .replies {
     display: none;
   }
   .comments {
@@ -281,15 +292,15 @@ body {
   #noti {
     overflow: scroll;
     overflow-x: hidden;
-    height:400px;
+    height: 400px;
   }
   ::-webkit-scrollbar {
-    width: 0;  /* Remove scrollbar space */
-    background: transparent;  /* Optional: just make scrollbar invisible */
+    width: 0; /* Remove scrollbar space */
+    background: transparent; /* Optional: just make scrollbar invisible */
   }
   /* Optional: show position indicator in red */
   ::-webkit-scrollbar-thumb {
-      background: #FF0000;
+    background: #ff0000;
   }
   .notis {
     background-color: #fff;
@@ -309,6 +320,32 @@ body {
     }
     .card_wrap {
       padding-left: 30px;
+    }
+  }
+
+  .user_item {
+    display: flex;
+    align-items: center;
+    .user_avatar {
+      img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+      }
+    }
+  }
+  .user_card {
+    display: flex;
+    align-items: center;
+    div {
+      margin-left: 5px;
+    }
+  }
+  .search_wrap {
+    .items {
+      background-color: #fff;
+      margin: 10px;
+      padding: 10px;
     }
   }
 }
