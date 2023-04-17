@@ -14,13 +14,17 @@
     </div>
     <div class="item">
       <div>
-        <div class="show_noti">
+        <div class="show_noti icon_tool">
           <%= image_tag("bell-filled-svgrepo-com.svg") %>
+          <div class="badge" id="count_noti"><%= current_user.notifications.not_viewed.count %></div>
         </div>
         <div id="noti" class="drop_down">
           <%= link_to t("share.see_all"), notifications_path %>
           <%= button_to t("share.read_all"), view_all_notifications_path, method: :patch, remote: true %>
-          <div class="notis"><%= render partial: "notifications/item", collection: notis, as: :noti %></div>
+          <div class="notis">
+            <div id="new_noti"></div>
+            <%= render partial: "notifications/item", collection: notis, as: :noti %>
+          </div>
           <div class="pagination_noti">
             <%= paginate notis, params: {controller: 'notifications', action: 'index', format: :js } %>
           </div>

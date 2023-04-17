@@ -20,5 +20,5 @@ en:
   reaction:
     html:
       zero: ""
-      one: "%{img} 1"
-      other: "%{img} %{count}"
+      one: "<img src=/assets/like-svgrepo-com.svg /> 1"
+      other: "<img src=/assets/like-svgrepo-com.svg /> %{count}"

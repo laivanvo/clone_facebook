@@ -113,3 +113,5 @@ gem "rails-i18n"
 gem "paranoia", "~> 2.2"
 
 gem "ransack"
+
+gem 'rack-cors', :require => 'rack/cors'
