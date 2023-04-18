@@ -1,6 +1,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.remotipart
+//= require cocoon
 
 //= require channels
 
@@ -49,11 +50,8 @@ window.onclick = function (event) {
   }
 };
 
-$("#open_post_modal").click(function () {
+$(".open_post_modal").click(function () {
   $("#post_modal").css("display", "block");
-});
-$("#close_post_modal").click(function () {
-  $("#post_modal").css("display", "none");
 });
 $("#open_group_modal").click(function () {
   $("#group_modal").css("display", "block");
@@ -71,12 +69,21 @@ $("#close_profile_modal").click(function () {
   $("#profile_modal").css("display", "none");
   $(".angle").css("display", "block");
 });
+$("#open_add_post_content_modal").click(function () {
+  $("#add_post_content_modal").css("display", "block");
+});
+$(".close_add_post_content_modal").click(function () {
+  $("#add_post_content_modal").css("display", "none");
+});
 
 $("#cancel").click(function () {
   $("#set_mode_post_modal").css("display", "none");
 });
 $("#mode_seleted").click(function () {
   $("#set_mode_post_modal").css("display", "none");
+});
+$(".close_content_modal").click(function () {
+  $("#content_modal").css("display", "none");
 });
 
 // When the user clicks anywhere outside of the modal, close it

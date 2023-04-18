@@ -23,7 +23,7 @@
     </div>
   </div>
   <div class="edit_comment_form">
-    <%= render partial: "comments/form", locals: { comment: comment, post_id: comment.post_id, comment_id: comment.comment_id, file_field_id: "update_comment_file_#{comment.id}" } %>
+    <%= render partial: "comments/form", locals: { comment: comment, post_id: comment.post_id, comment_id: comment.comment_id, content_id: nil, file_field_id: "update_comment_file_#{comment.id}" } %>
   </div>
   <%= render partial: "comments/menu", locals: { comment: comment, user_be_blocked: user_be_blocked } %>
   <div class="file"><%= comment_file(comment) %></div>
@@ -43,7 +43,7 @@
       <strong class="load_comment" id="<%= "_rep_comment_#{comment.id}" %>"><%= t "share.see_more" %></strong>
     <% end %>
   </div>
-  <%= render partial: "comments/form", locals: { comment: @new_comment, post_id: comment.post_id, comment_id: comment.id, file_field_id: "rep_comment_file_#{comment.id}" } %>
+  <%= render partial: "comments/form", locals: { comment: @new_comment, post_id: comment.post_id, comment_id: comment.id, content_id: nil, file_field_id: "rep_comment_file_#{comment.id}" } %>
   <div id="<%= "new_rep_comment_#{comment.id}" %>"></div>
   <%= yield if block_given? %>
 </div>

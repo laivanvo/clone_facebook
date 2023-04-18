@@ -49,7 +49,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def profile_params
-    params.require(:profile).permit(:name)
+    params.require(:profile).permit(:name, :locale)
   end
 
   # If you have extra params to permit, append them to the sanitizer.

@@ -1,28 +1,23 @@
 <div id="post_modal" class="modal">
   <div class="modal-content">
-    <span class="close" id="close_post_modal">&times;</span>
+    <span class="close close_post_modal">&times;</span>
     <div class="title">
-      <h4>Tạo bài viết</h4>
+      <strong><%= t "share.create_post" %></strong>
     </div>
-    <div class="auth">
-      <div class="avatar">
-        <%= user_avatar(current_user) %>
-      </div>
-      <div class="name">
-        <div class="item">
-          <% current_user.name %>
+    <%= render layout: "users/item", locals: { user: current_user } do %>
+    <% end %>
+    <%= form_with model: post, local: local do |form| %>
+      <%= form.label t("share.add_post_mode") %>
+      <%= form.select :mode, Post.modes.keys.collect {|mode| [t("post_mode.#{mode}"), mode]}, value: post.mode %>
+      <%= form.text_area(:text, placeholder: t("share.write"), value: post.text) %>
+      <%= form.hidden_field :group_id, value: post.group_id %>
+      <div id="contents">
+        <%= form.fields_for :contents do |content| %>
+          <%= render 'content_fields', f: content %>
+        <% end %>
+        <div class="links">
+          <%= link_to_add_association t("share.add_content"), form, :contents %>
         </div>
-      </div>
-    </div>
-    <%= form_with model: post do |form| %>
-      <%= form.label "Chọn chế độ của bài viết"%>
-      <%= form.select :mode, Post.modes.keys.to_a %>
-      <%= form.text_area(:text) %>
-      <%= form.hidden_field :group_id, value: group_id %>
-      <div class="upload">
-        Thêm ảnh đại diện cho nhóm
-        <label for="post_content"><%= image_tag('img_icon.png') %></label>
-        <%= form.file_field :content, accept:'image/*' %>
       </div>
       <button class="button_wrap" type="submit">Đăng</button>
     <% end %>

@@ -85,13 +85,15 @@
       border-width: 1px;
     }
     .button_wrap {
-      background-color: #1b74e4;
+      background-color:aliceblue;
       color: #000;
       width: 100%;
       height: 50px;
       font-size: 30px;
       border-radius: 6px;
       cursor: pointer;
+      display: flex;
+      justify-content: center;
     }
     select {
       width: 100%;

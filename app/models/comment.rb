@@ -24,6 +24,10 @@ class Comment < ApplicationRecord
     Comment.find_by(id: comment_id)
   end
 
+  def content
+    Content.find_by(id: content_id)
+  end
+
   def set_param_new
     pre_comment = Comment.find_by(id: comment_id)
     return unless pre_comment

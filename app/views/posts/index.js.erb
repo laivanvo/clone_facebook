@@ -5,3 +5,7 @@ $('#posts').append('<%= j render partial: "posts/card", collection: @posts, as: 
   $(window).off('scroll');
   $('.pagination_post').find('.pagination').remove();
 <% end %>
+$(".menu_post").off("click");
+$(".menu_post").click(function () {
+  $(this).parent().children(".drop_down")[0].classList.toggle("show");
+});

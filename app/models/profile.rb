@@ -8,6 +8,8 @@ class Profile < ApplicationRecord
                   "Thanh Hoa", "Thua Thien-Hue", "Tien Giang", "Tra Vinh", "Tuyen Quang", "Vinh Long", "Vinh Phuc", "Yen Bai",
                   "Can Tho", "Da Nang", "Hai Phong", "Hanoi", "Ho Chi Minh"]
 
+  enum locale: %i[vi en], _default: I18n.default_locale
+
   mount_uploader :avatar, ProfileFileUploader
 
   def self.ransackable_attributes(auth_object = nil)

@@ -8,6 +8,10 @@
           <%= profile.label :name %><br />
           <%= profile.text_field :name, autofocus: true %>
         </div>
+        <div class="field_wrap">
+          <%= profile.label :locale %><br />
+          <%= profile.select :locale, Profile.locales.keys.to_a %>
+        </div>
       <% end %>
       <div class="field_wrap">
         <%= f.label :email %><br />

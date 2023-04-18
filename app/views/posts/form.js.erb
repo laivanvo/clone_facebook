@@ -1,0 +1,5 @@
+$('#post_modal_wrap').html('<%= j render partial: "modal/post_form", locals: { post: @post, local: @local } %>');
+$('#post_modal').css("display", "block")
+$(".close_post_modal").click(function () {
+  $("#post_modal").css("display", "none");
+});

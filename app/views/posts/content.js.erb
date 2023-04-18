@@ -1,0 +1,36 @@
+$('#content_modal_wrap').html('<%= j render partial: "modal/content", locals: { post: @post, content: @content } %>');
+$('#content_modal').css("display", "block");
+$(".close_content_modal").click(function () {
+  $("#content_modal").css("display", "none");
+});
+$(".open_comment").click(function () {
+  $(this)
+    .parent()
+    .parent()
+    .parent()
+    .parent()
+    .find(".comments")
+    .css("display", "block");
+});
+$(".load_comment").click(function () {
+  var more_comments_url = $("#pagi" + this.id)
+    .children(".pagination")
+    .find(".next_page a")
+    .attr("href");
+  if (more_comments_url) {
+    more_comments_url = more_comments_url;
+  } else {
+    more_comments_url = $("#pagi" + this.id)
+      .children(".pagination")
+      .find(".next a")
+      .attr("href");
+  }
+  if (more_comments_url) {
+    $("#pagi" + this.id)
+      .children(".pagination")
+      .html(
+        '<img src="/assets/ajax-loader.gif" alt="Loading..." title="Loading..." />'
+      );
+    $.getScript(more_comments_url);
+  }
+});

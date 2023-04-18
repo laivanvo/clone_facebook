@@ -1,0 +1,6 @@
+vi:
+  mailer:
+    notice_pending_post:
+      greeting: 'Chào %{name},'
+      content: 'Có một số bài đăng cần bạn kiểm tra.'
+      link: "Nhấn vào để kiểm tra."

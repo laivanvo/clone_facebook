@@ -1,0 +1,18 @@
+<div class="post_contents">
+  <% if post.contents.count < 3 %>
+    <%= render partial: "contents/item", collection: post.contents, as: :content %>
+  <% else %>
+    <div class="flex">
+      <div class="col-6">
+        <%= render partial: "contents/item", locals: { content: post.contents[0] } %>
+      </div>
+      <div class="col-6">
+        <div class="col-12 height-6"><%= render partial: "contents/item", locals: { content: post.contents[1] } %></div>
+        <% if post.contents.count > 3 %>
+          <div class="other_contents"><%= "+#{post.contents.count - 3}" %></div>
+        <% end %>
+        <div class="<%= "col-12 height-6 #{ (post.contents.count > 3) ? "opa-05" : "" }" %>"><%= render partial: "contents/item", locals: { content: post.contents[2] } %></div>
+      </div>
+    </div>
+  <% end %>
+</div>

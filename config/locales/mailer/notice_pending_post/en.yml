@@ -1,0 +1,6 @@
+en:
+  mailer:
+    notice_pending_post:
+      greeting: 'Hi %{name},'
+      content: 'There are some posts that need you to check out.'
+      link: "Click to check."

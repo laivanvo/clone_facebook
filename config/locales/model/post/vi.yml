@@ -1,0 +1,5 @@
+vi:
+  post_mode:
+    global: "Công khai"
+    only_me: "Chỉ mình tôi"
+    only_friend: "Chỉ bạn bè"
