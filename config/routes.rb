@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /en|vi/ do
   end
 
+  mount ActionCable.server => "/cable"
+
   resources :posts
   resources :member_relations
   resources :profiles

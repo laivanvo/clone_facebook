@@ -1,13 +1,11 @@
 class Comment < ApplicationRecord
-  acts_as_paranoid
-
   enum level: %i[low medium high], _default: :low
 
   belongs_to :user
   belongs_to :post
   has_many :comments
-  has_many :reactions, as: :ta_duty
-  has_many :notifications, as: :ta_duty
+  has_many :reactions, as: :ta_duty, dependent: :destroy_async
+  has_many :notifications, as: :ta_duty, dependent: :destroy_async
 
   validates :text, presence: true
   validate :wrong_reply
@@ -23,7 +21,7 @@ class Comment < ApplicationRecord
   mount_uploader :file, CommentFileUploader
 
   def parent_comment
-    Comment.with_deleted.find_by(id: comment_id)
+    Comment.find_by(id: comment_id)
   end
 
   def set_param_new
@@ -39,9 +37,13 @@ class Comment < ApplicationRecord
   end
 
   def add_noti
-    Notification.create user_id: post.user_id, ta_duty_id: id, ta_duty_type: :Comment, noti_type: :comment_post
+    if user_id != post.user_id
+      Notification.create user_id: post.user_id, ta_duty_id: id, ta_duty_type: :Comment, noti_type: :comment_post
+    end
     unless low?
-      Notification.create user_id: parent_comment.user_id, ta_duty_id: id, ta_duty_type: :Comment, noti_type: :rep_comment
+      if user_id != parent_comment.user_id
+        Notification.create user_id: parent_comment.user_id, ta_duty_id: id, ta_duty_type: :Comment, noti_type: :rep_comment
+      end
     end
   end
 

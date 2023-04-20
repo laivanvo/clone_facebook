@@ -8,7 +8,7 @@ vi:
         text: "văn bản"
   errors:
     messages:
-      blank: 'không được để trống'
+      blank: "không được để trống"
       wrong: "không hợp lệ"
   comment:
     zero: ""
@@ -21,5 +21,5 @@ vi:
   reaction:
     html:
       zero: ""
-      one: "%{img} 1"
-      other: "%{img} %{count}"
+      one: "<img src=/assets/like-svgrepo-com.svg /> 1"
+      other: "<img src=/assets/like-svgrepo-com.svg /> %{count}"

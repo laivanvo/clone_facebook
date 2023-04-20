@@ -5,3 +5,7 @@ en:
         html: "<div><strong>%{user_name}</strong> commented on your post.</div>"
       rep_comment:
         html: "<div><strong>%{user_name}</strong> responded to your comment.</div>"
+      reaction_post:
+        html: "<div><strong>%{user_name}</strong> liked your post.</div>"
+      reaction_comment:
+        html: "<div><strong>%{user_name}</strong> liked your comment.</div>"

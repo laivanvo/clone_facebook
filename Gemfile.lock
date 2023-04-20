@@ -239,6 +239,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.6.2)
     rack (2.2.6.2)
+    rack-cors (2.0.1)
+      rack (>= 2.0.0)
     rack-protection (3.0.5)
       rack
     rack-test (2.0.2)
@@ -392,6 +394,7 @@ DEPENDENCIES
   paranoia (~> 2.2)
   pry-rails
   puma (~> 5.0)
+  rack-cors
   rails (~> 7.0.3)
   rails-i18n
   ransack
