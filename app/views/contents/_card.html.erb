@@ -1,0 +1,58 @@
+<% be_blocked = current_user.be_blocked(post.id) %>
+<% target_low_comment = @current_comment&.low_comment %> <%# showing comment when coming from notification %>
+<% comments = content.comments.where.not(id: target_low_comment&.id).low.includes(:reactions).page %>
+<% reaction = current_user.reaction(content.id, :Content) %>
+<div class="content_card post_card">
+  <div class="auth item">
+    <%= render layout: "users/item", locals: { user: current_user } do %>
+      <%= created_at(content) %>
+    <% end %>
+    <%= render partial: "posts/menu", locals: { post: post } %>
+  </div>
+  <div class="caption"><%= content.caption %></div>
+  <div class="line">
+  </div>
+  <div class="action_view item">
+    <div class="item" id="<%= "number_react_content_#{content.id}" %>">
+      <%= t("reaction.html",img: image_tag('like-svgrepo-com.svg'), count: content.reactions.size) %>
+    </div>
+    <div class="item count_comment" id="<%= "number_comment_content_#{content.id}" %>">
+      <%= t("comment", count: content.comments.size) %>
+    </div>
+    <div class="item">
+      <div class="number_share">10</div>
+      <div class="share"><%= t "share.share" %></div>
+    </div>
+  </div>
+  <div class="line">
+  </div>
+  <div class="item"><%= render partial: "reactions/item", locals: { reaction_tag_id: "reaction_content_#{content.id}", reaction: reaction, reaction_params: { ta_duty_id: content.id, ta_duty_type: :Content } } %></div>
+  <div class="item">
+    <% if post.comment_flag %>
+      <% if be_blocked.nil? %>
+        <%= render partial: "comments/form", locals: { comment: @new_comment, post_id: post.id, comment_id: nil, content_id: content.id, file_field_id: "comment_file_post_#{post.id}" } %>
+      <% else %>
+        <div class="noti"><%= t "comments.save.be_block" %></div>
+      <% end %>
+    <% else %>
+      <div class="noti"><%= t "comments.save.comment_flag_off" %></div>
+    <% end %>
+    <div id="<%= "new_comment_content_#{content.id}" %>"></div>
+    <% if @current_comment %>
+      <div class="current_comment">
+        <%= render layout: "comments/current", locals: { comment: @current_comment.parent_comment, except_comment_id: @current_comment.id } do %>
+          <%= render partial: "comments/card", locals: { comment: @current_comment, except_comment_id: nil } %>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="comments" id="<%= "comment_content_#{content.id}" %>">
+      <div class="items"><%= render partial: "comments/card", collection: comments, as: :comment, locals: { except_comment_id: nil } %></div>
+      <div id="<%= "pagi_comment_content_#{content.id}" %>">
+        <%= paginate comments, params: { controller: 'comments', action: 'index', format: :js, content_id: content.id } %>
+      </div>
+      <% if comments.next_page.present? %>
+        <strong class="load_comment" id="<%= "_comment_content_#{content.id}" %>"><%= t "share.see_more" %></strong>
+      <% end %>
+    </div>
+  </div>
+</div>

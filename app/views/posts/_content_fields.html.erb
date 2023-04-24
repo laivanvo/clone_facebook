@@ -1,0 +1,41 @@
+<div class="nested-fields">
+  <%= link_to_remove_association f do %>
+    <span class="close">&times;</span>
+  <% end %>
+  <%= f.label :file do %>
+    <div class="tool button_wrap" id="<%= "post_contents_attributes_#{f.index}_preview" %>">
+      <% if f.object&.file_url %>
+        <%= image_tag(f.object.file_url) %>
+      <% else %>
+        <div>
+          <div class="img_wrap"><%= image_tag("plus-circle-1441-svgrepo-com.svg") %></div>
+          <strong><%= t "share.add_photo/video" %></strong>
+        </div>
+      <% end %>
+    </div>
+    <div class="upload_post_content"><%= f.file_field :file, accept:'image/*' %></div>
+  <% end %>
+  <%= f.text_area(:caption, placeholder: t("share.write"), value: f&.object&.caption) %>
+</div>
+<script>
+  $(".upload_post_content").children($(":input")).change(function(e) {
+    handle_preview($(this), e)
+  })
+
+  function readURL(input, image, textarea) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        image.html($("<img src='" + e.target.result + "'/>"));
+      }
+      reader.readAsDataURL(input.files[0]);
+      textarea.css("display", "block")
+    }
+  }
+
+  function handle_preview(input_tag, e){
+    var image = $("#" + input_tag[0].id.replace("file", "preview"))
+    var textarea = $("#" + input_tag[0].id.replace("file", "caption"))
+    readURL(e.target, image, textarea);
+  }
+</script>

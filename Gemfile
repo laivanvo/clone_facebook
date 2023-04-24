@@ -115,3 +115,7 @@ gem "paranoia", "~> 2.2"
 gem "ransack"
 
 gem 'rack-cors', :require => 'rack/cors'
+
+gem "cocoon"
+
+gem "sidekiq-cron"

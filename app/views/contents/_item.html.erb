@@ -1,0 +1,3 @@
+<%= button_to content_post_path(content.post_id, content.id), method: :get, remote: true do %>
+  <%= content_file(content) %>
+<% end %>

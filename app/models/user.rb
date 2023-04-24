@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_many :block_comments
   has_many :notifications
 
-  delegate :name, :avatar_url, :address, :birthday, to: :profile
+  delegate :name, :avatar_url, :address, :birthday, :locale, to: :profile
 
   before_create :add_token
 
@@ -62,6 +62,7 @@ class User < ApplicationRecord
     Post.where(user_id: id)
         .or(Post.where(user_id: friends.pluck(:id), group_id: nil).not_only_me)
         .or(Post.where(group_id: joined_groups.pluck(:group_id)).passed)
+        .order(created_at: :desc)
   end
 
   def recommend_posts

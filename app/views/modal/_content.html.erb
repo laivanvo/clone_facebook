@@ -1,0 +1,23 @@
+<% next_content = post.contents.where("id > ?", content.id).first %>
+<% next_content = next_content.nil? ? post.contents.first : next_content %>
+<% pre_content = post.contents.where("id < ?", content.id).last %>
+<% pre_content = pre_content.nil? ? post.contents.last : pre_content %>
+<div id="content_modal" class="modal">
+  <div class="modal-content">
+    <span class="close close_content_modal">&times;</span>
+    <div class="flex">
+      <%= button_to content_post_path(post.id, pre_content.id), { class: "icon_wrap left_icon", method: :get, remote: true } do %>
+        <%= image_tag("arrow-left-circle-fill-svgrepo-com.svg") %>
+      <% end %>
+      <%= button_to content_post_path(post.id, next_content.id), { class: "icon_wrap right_icon", method: :get, remote: true } do %>
+        <%= image_tag("arrow-right-circle-fill-svgrepo-com.svg") %>
+      <% end %>
+      <div class="img_wrap">
+        <%= content_file(content) %>
+      </div>
+      <div class="content_wrap">
+        <%= render partial: "contents/card", locals: { post: post, content: content } %>
+      </div>
+    </div>
+  </div>
+</div>

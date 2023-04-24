@@ -3,6 +3,7 @@ class HomeController < ApplicationController
 
   def index
     @post = current_user.posts.new
+    @post.contents.build
     @new_comment = current_user.comments.new
     @posts = current_user.home_posts.includes(:comments, :reactions).page
     redirect_to not_permission_path if params[:comment_id]

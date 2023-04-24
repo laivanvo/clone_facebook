@@ -1,0 +1,39 @@
+$("<%= j ("#post_card_#{@post.id}") %>").html("<%= j render partial: "posts/card", locals: { post: @post } %>")
+$("#post_modal").css("display", "none")
+$(".menu_post").off("click");
+$(".open_comment").off("click");
+$(".open_rep").off("click");
+$(".menu_comment").off("click");
+$(".edit_comment").off("click");
+$(".write_comment").off("click");
+$(".menu_post").click(function () {
+  $(this).parent().children(".drop_down")[0].classList.toggle("show");
+});
+$(".open_comment").click(function () {
+  $(this)
+    .parent()
+    .parent()
+    .parent()
+    .parent()
+    .find(".comments")
+    .css("display", "block");
+});
+$(".write_comment").click(function () {
+  $(this).parent().parent().children("form").css("display", "block");
+});
+$(".open_rep").click(function () {
+  $(this).parent().children(".replies").css("display", "block");
+  $(this).remove();
+});
+$(".menu_comment").click(function () {
+  $(this).parent().children(".drop_down")[0].classList.toggle("show");
+});
+$(".edit_comment").click(function () {
+  $(this)
+    .parent()
+    .parent()
+    .children(".edit_comment_form")
+    .find("form")
+    .css("display", "block");
+  $(this).parent().parent().children(".text").css("display", "none");
+});

@@ -3,8 +3,18 @@ Rails.application.routes.draw do
   end
 
   mount ActionCable.server => "/cable"
+  require "sidekiq/web"
+  require "sidekiq/cron/web"
 
-  resources :posts
+  Rails.application.routes.draw do
+    mount Sidekiq::Web => "/sidekiq"
+  end
+
+  resources :posts do
+    member do
+      get "contents/:content_id" => "posts#contents", as: :content
+    end
+  end
   resources :member_relations
   resources :profiles
   resources :reactions

@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
   before_action :check_admin, only: [:update, :destroy]
   before_action :set_post, only: [:update, :destroy]
-  before_action :set_post_show, only: [:show]
+  before_action :set_post_show, only: [:show, :edit, :contents]
+  before_action :set_new_comment
   layout "posts/show", only: [:show]
 
   def index
@@ -13,9 +14,25 @@ class PostsController < ApplicationController
     end
   end
 
+  def new
+    @post = current_user.posts.new
+    @local = true
+    render :form
+  end
+
+  def edit
+    @local = false
+    render :form
+  end
+
   def show
-    @new_comment = current_user.comments.new
     @current_comment = Comment.find_by(id: params[:current_comment_id])
+  end
+
+  def contents
+    @content = @post.contents.find_by(id: params[:content_id])
+    @current_comment = Comment.find_by(id: params[:current_comment_id])
+    render :content
   end
 
   def create
@@ -33,10 +50,11 @@ class PostsController < ApplicationController
     status = @is_admin ? :passed : :pending
     if @post.update(post_params.merge(status: status))
       flash[:success] = t "update.success"
+      render :update
     else
       flash[:error] = @post.errors.full_messages
+      redirect_back(fallback_location: root_path)
     end
-    redirect_back(fallback_location: root_path)
   end
 
   def destroy
@@ -74,7 +92,11 @@ class PostsController < ApplicationController
     end
   end
 
+  def set_new_comment
+    @new_comment = current_user.comments.new
+  end
+
   def post_params
-    params.require(:post).permit(:text, :mode, :content, :group_id, :comment_flag)
+    params.require(:post).permit(:text, :mode, :group_id, :comment_flag, contents_attributes: %i[id caption file _destroy])
   end
 end

@@ -1,0 +1,37 @@
+=> [32m#<ActionView::Helpers::FormBuilder:0x00007fb3b3d085b8[0m
+ @default_html_options[32m=[0m{[33m:namespace[0m=>[1;36mnil[0m},
+ @default_options[32m=[0m{[33m:namespace[0m=>[1;36mnil[0m, [33m:skip_default_ids[0m=>[1;36mfalse[0m, [33m:allow_method_names_outside_object[0m=>[1;36mfalse[0m},
+ @index[32m=[0m[1;34m0[0m,
+ @multipart[32m=[0m[1;36mnil[0m,
+ @nested_child_index[32m=[0m{},
+ @object[32m=[0m[32m#<Content:0x00007fb3b3d939d8[0m id: [1;36mnil[0m, post_id: [1;36mnil[0m, file: [1;36mnil[0m, caption: [1;36mnil[0m, created_at: [1;36mnil[0m, updated_at: [1;36mnil[0m[32m>[0m,
+ @object_name[32m=[0m[31m[1;31m"[0m[31mpost[contents_attributes][0][1;31m"[0m[31m[0m,
+ @options[32m=[0m
+  {[33m:allow_method_names_outside_object[0m=>[1;36mfalse[0m,
+   [33m:skip_default_ids[0m=>[1;36mfalse[0m,
+   [33m:builder[0m=>[1;36mnil[0m,
+   [33m:namespace[0m=>[1;36mnil[0m,
+   [33m:parent_builder[0m=>
+    [32m#<ActionView::Helpers::FormBuilder:0x00007fb3b3d47650[0m
+     @default_html_options[32m=[0m{},
+     @default_options[32m=[0m{[33m:skip_default_ids[0m=>[1;36mfalse[0m, [33m:allow_method_names_outside_object[0m=>[1;36mtrue[0m},
+     @index[32m=[0m[1;36mnil[0m,
+     @multipart[32m=[0m[1;36mnil[0m,
+     @nested_child_index[32m=[0m{[31m[1;31m"[0m[31mpost[contents_attributes][1;31m"[0m[31m[0m=>[1;34m0[0m},
+     @object[32m=[0m
+      [32m#<Post:0x00007fb3b3dd1300[0m
+       id: [1;36mnil[0m,
+       user_id: [1;34m7[0m,
+       mode: [31m[1;31m"[0m[31monly_friend[1;31m"[0m[31m[0m,
+       text: [1;36mnil[0m,
+       content: [1;36mnil[0m,
+       created_at: [1;36mnil[0m,
+       updated_at: [1;36mnil[0m,
+       group_id: [1;36mnil[0m,
+       status: [31m[1;31m"[0m[31mpending[1;31m"[0m[31m[0m,
+       comment_flag: [1;36mtrue[0m[32m>[0m,
+     @object_name[32m=[0m[31m[1;31m"[0m[31mpost[1;31m"[0m[31m[0m,
+     @options[32m=[0m{[33m:allow_method_names_outside_object[0m=>[1;36mtrue[0m, [33m:skip_default_ids[0m=>[1;36mfalse[0m},
+     @template[32m=[0m[32m#<ActionView::Base:0x000000000a4308>[0m[32m>[0m,
+   [33m:child_index[0m=>[1;34m0[0m},
+ @template[32m=[0m[32m#<ActionView::Base:0x000000000a4308>[0m[32m>[0m

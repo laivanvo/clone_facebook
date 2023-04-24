@@ -1,0 +1,8 @@
+en:
+  activerecord:
+    attributes:
+      post:
+        modes:
+          global: "Global"
+          only_me: "Only me"
+          only_friend: "Only friend"

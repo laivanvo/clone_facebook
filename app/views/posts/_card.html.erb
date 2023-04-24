@@ -2,7 +2,7 @@
 <% target_low_comment = @current_comment&.low_comment %> <%# showing comment when coming from notification %>
 <% comments = post.comments.where.not(id: target_low_comment&.id).low.includes(:reactions).page %>
 <% reaction = current_user.reaction(post.id, :Post) %>
-<div class="post_card">
+<div class="post_card" id="<%= "post_card_#{post.id}" %>">
   <div id="<%= "post_error_#{post.id}" %>"></div>
   <div>
     <div class="header item">
@@ -15,7 +15,7 @@
       <%= post.text %>
     </div>
     <div class="content item">
-      <%= post_content(post) %>
+      <%= render partial: "posts/contents", locals: { post: post } %>
     </div>
     <div class="action item">
       <div class="item" id="<%= "number_react_post_#{post.id}" %>">
@@ -45,7 +45,7 @@
   </div>
   <% if post.comment_flag %>
     <% if be_blocked.nil? %>
-      <%= render partial: "comments/form", locals: { comment: @new_comment, post_id: post.id, comment_id: nil, file_field_id: "comment_file_post_#{post.id}" } %>
+      <%= render partial: "comments/form", locals: { comment: @new_comment, post_id: post.id, comment_id: nil, content_id: nil, file_field_id: "comment_file_post_#{post.id}" } %>
     <% else %>
       <div class="noti"><%= t "comments.save.be_block" %></div>
     <% end %>

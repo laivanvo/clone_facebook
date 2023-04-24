@@ -6,3 +6,4 @@
 //= link "jquery.min.js"
 //= link "jquery_ujs.js"
 //= link "bootstrap.min.js"
+//= link "jquery"

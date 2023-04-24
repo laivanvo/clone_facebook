@@ -1,7 +1,9 @@
 <div class="create_post">
   <div class="show_modal_wrap">
     <%= image_tag('ava1.jpg') %>
-    <input id="open_post_modal" class="input_search" placeholder="<%= t("share.open_form_post", user_name: current_user.name) %>"/>
+    <%= button_to new_post_path, method: :get, remote: true do %>
+      <input class="input_search" placeholder="<%= t("share.open_form_post", user_name: current_user.name) %>"/>
+    <% end %>
   </div>
   <div class="line"></div>
   <div class="tool">
@@ -19,4 +21,3 @@
     </div>
   </div>
 </div>
-<%= render partial: "modal/post_form", locals: { post: @post, group_id: group_id } %>
